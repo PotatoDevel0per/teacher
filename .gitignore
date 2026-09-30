@@ -1,0 +1,32 @@
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Large experiment artifacts
+experiments/**/checkpoints/
+experiments/**/runs/
+experiments/**/wandb/
+experiments/**/*.pt
+experiments/**/*.pth
+experiments/**/*.ckpt
+experiments/**/*.npy
+experiments/**/*.npz
+
+# Private local notes
+CLAUDE.local.md
+
+# Optional: exclude PDFs if repository size becomes large
+# papers/pdf/
+
+# Secrets
+.env
+*.key
+*.pem
