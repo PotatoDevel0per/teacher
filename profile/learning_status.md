@@ -1,5 +1,7 @@
 # Learning Status
 
+> **주의 (2026-09-30)**: 이전 실험 폴더(`research/prior_experiments/`)에 쓰인 개념은 이해 수준의 근거로 쓰지 않는다. 그 실험들은 Claude Code와 약식으로 진행한 것이다. 사용자는 설명할 수 없는 공백이 많다고 직접 밝혔다. 필요한 개념 목록은 `research/prior_experiments/concepts_to_learn.md`에 있다. 등급은 개념별로 직접 확인한 뒤에만 올린다.
+
 ## 상태 등급
 
 - unknown: 아직 접하지 않음

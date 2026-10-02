@@ -1,0 +1,22 @@
+paper_id: 2024_xie_demonet
+title: "DEMONet: Underwater Acoustic Target Recognition based on Multi-Expert Network and Cross-Temporal Variational Autoencoder"
+authors: [Yuan Xie, Xiaowei Zhang, Jiawei Ren, Ji Xu]
+year: 2024
+venue: "arXiv preprint (arXiv:2411.02758v1)"
+doi: ""
+official_url: "https://arxiv.org/abs/2411.02758"
+pdf_path: "/jhlee/ot-cfm/docs/DEMONet.pdf"
+code_url: ""
+datasets: [DeepShip, ShipsEar, proprietary]
+topics:
+  - underwater_acoustic
+  - uatr
+  - demon
+status: partially_read
+evidence_level: original_pdf_partial
+reproduction_status: partial_prior   # PG-MCLDM에서 분류기·CT-VAE 변형 재현, G0 미통과(72.2 vs 77.15)
+relevance_to_user:
+  - "DEMON 스펙트럼 정의와 CT-VAE 정제 방법"
+  - "블레이드 수 추정 논문이 아님 (라우팅용 암묵 특징)"
+limitations:
+  - "Table 10 분할은 recording-disjoint이며 test 녹음 73.9%가 train과 같은 선박 (PG-MCLDM 조사)"
