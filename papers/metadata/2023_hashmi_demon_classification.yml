@@ -1,0 +1,23 @@
+paper_id: 2023_hashmi_demon_classification
+title: "Novel DEMON Spectra Analysis Techniques and Empirical Knowledge Based Reference Criterion for Acoustic Signal Classification"
+authors: [Muhammad Abdur Rehman Hashmi, Rana Hammad Raza]
+year: 2023
+venue: "Journal of Electrical Engineering & Technology 18:561-578 (online 2022-08-01)"
+doi: "10.1007/s42835-022-01167-3"
+official_url: "https://doi.org/10.1007/s42835-022-01167-3"
+pdf_path: "papers/pdf/2023_hashmi_demon_classification.pdf"
+code_url: ""
+datasets: [877 samples from public sources incl. ShipsEar, NOAA, NPS Glacier Bay, Discovery of Sound in the Sea, SF Historic Naval Sound]
+topics: [underwater_acoustic, demon, blade_count, srpm, rule_based_classification]
+status: read
+evidence_level: original_pdf_full
+reproduction_status: not_started
+relevance_to_user:
+  - "DEMON에서 SRPM·NOB·NOS를 추출하는 규칙 (OP12 관련)"
+  - "PSD 기반 band-pass 대역을 샘플별로 수동 선택"
+  - "대역 자동 선택 선행연구 목록 (Table 1: 포락선 SNR 최대화 반복법 등)"
+limitations:
+  - "대역 선택, 피크 판독, 쌍둥이 피크 판정을 사람이 함 (저자: 자동화는 향후 과제)"
+  - "NOB 추정 정확도를 따로 보고하지 않음. 9개 범주 분류 정확도만 보고 (94.7%, Table 2는 94.8%)"
+  - "샘플 목록과 정답 라벨이 공개되지 않아 재현 불가"
+  - "Table 3 기준표는 데이터시트와 경험 지식으로 작성됨"

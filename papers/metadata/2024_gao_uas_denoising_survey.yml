@@ -1,0 +1,20 @@
+paper_id: 2024_gao_uas_denoising_survey
+title: "Underwater Acoustic Signal Denoising Algorithms: A Survey of the State-of-the-art"
+authors: [Ruobin Gao, Maohan Liang, Heng Dong, Xuewen Luo, P. N. Suganthan]
+year: 2024
+venue: "arXiv:2407.13264v1 (헤더 표기: IEEE Trans. SMC: Systems, Jun 2024; 게재 여부 미확인)"
+doi: ""
+official_url: "https://arxiv.org/abs/2407.13264"
+pdf_path: "papers/pdf/2024_gao_uas_denoising_survey.pdf"
+code_url: ""
+datasets: [synthetic chaotic signals, ShipsEar, DeepShip]
+topics: [underwater_acoustic, denoising, signal_decomposition, survey]
+status: read
+evidence_level: original_pdf_full
+reproduction_status: not_applicable
+relevance_to_user:
+  - "적응형 대역 분할(EWT) 등 분해 기반 잡음 제거 방법의 목록"
+  - "하이퍼파라미터 수동 선택이 미해결 문제라고 명시 (§X-5)"
+limitations:
+  - "서베이 논문: 직접 실험하거나 방법 간 비교하지 않음"
+  - "평가가 주로 합성 혼돈 신호(Lorenz 등) + SNR/MSE 기준"

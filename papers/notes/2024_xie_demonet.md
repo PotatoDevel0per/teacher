@@ -20,6 +20,19 @@ DEMON 스펙트럼을 물리 특징으로 쓰는 UATR 분류 모델이다. 신�
 - 따라서 "DEMON에서 블레이드 수를 추출해 조건으로 쓴다"의 근거로 쓰려면 별도 논문이 필요하다.
 - PG-MCLDM은 이 논문의 CT-VAE를 변형해 날개 수를 추정했다. 같은 선박 내 일치율은 0.515(우연 0.293)였다. 이것은 정답 대비 정확도가 아니라 **일관성**이다.
 
+## 분류기 설정 (`confirmed`, 2026-10-06 추가 확인)
+
+- 백본은 ResNet-18이다(4 residual layer × basic block 2, adaptive avg pool, linear) (§4.2).
+- 백본 선택 근거: 예비 실험(STFT 진폭 입력)에서 SVM, FCN, MobileNetV3, SE-ResNet, attention-ResNet보다 ResNet-18이 좋았다 (§5.1, Fig. 3a).
+- "Baseline" = CQT + ResNet-18 = DeepShip 77.15 ± 1.16% (Table 4). ShipsEar: STFT 75.24 / Mel 77.14 / CQT 73.33 (Table 7)
+- 학습 설정 (§4.3):
+  - AdamW, 최대 lr 5e-3, wd 1e-3, cosine, warmup 5 epoch, 200 epoch
+  - 프레임 50/25 ms, Mel 300, CQT 해상도 30
+  - seed 2개(123, 3407)
+  - 30 s 세그먼트, 15 s overlap
+- ImageNet 사전학습 여부는 텍스트 검색에서 언급을 찾지 못했다(`unknown`).
+- PG-MCLDM이 이 baseline을 재현하려다 실패했다: 72.2 vs 77.15 (G0). 분할은 Table 10이며 선박 누수가 74%다.
+
 ## 상태
 
 - [x] 원문 확보

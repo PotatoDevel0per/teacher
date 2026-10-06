@@ -12,9 +12,16 @@
 | PRIOR-DSP | `/jhlee/deepship_preprocessing` | 09-08 ~ 09-09 | 전처리 파이프라인, 복원 설정 결정 | n_fft 16384 + GL로 저역 피크 일치 95% | ship_disjoint | - | hypothesis |
 | PRIOR-OTCFM | `/jhlee/ot-cfm` | 09-10 ~ 09-29 | 생성 (30 s 2-stream, CFM vs DDIM) | 통과 체크포인트 없음, 30k부터 모드 축소 | ship_disjoint | 1 | hypothesis |
 | PRIOR-PGMCLDM | `/jhlee/PG-MCLDM` | 09-28 ~ 09-30 | 물리 조건 latent 생성 + 증강 | 증강 +0.66%p (유의성 없음), G0 재현 미통과 | DEMONet Table 10 (선박 누수 74%) | 1 | hypothesis, 중단 |
+| PRIOR-SLM-R2 | `/jhlee/UATR_SLM/UATR_SLM_split_study` | 10-05 | 분할 방식별 재실험 (DeepShip + ShipsEar, 24 run) | DeepShip macro-F1 98.02 → 52.80, ShipsEar 96.40 → 71.80 | 무작위 / 녹음 / DEMONet / 선박 | 3 | hypothesis (다른 세션) |
 
 **주의**: 분할이 폴더마다 다르므로 폴더 사이에서 수치를 비교하면 안 된다 (`research/prior_experiments/README.md` §2).
 
-## 새 실험
+## 새 실험 (1차 목표: 물리 기반 증강, D-2026-10-06-02)
 
-(아직 없음)
+| ID | 목적 | 설정 | 판정 기준 | 상태 |
+|---|---|---|---|---|
+| EXP-001 | UniqueShip baseline 재현 | 5C-Bal 5 fold, SwinV2-Tiny + Mel, 20 kHz 리샘플(논문 §III-A, 배포본은 32 kHz), DC 제거, 90 dB 범위, AdamW lr 1e-6, 30 epoch. fold당 seed 1, 가능하면 3 | 정확도 평균이 0.665 ± 0.024(2 sd) 안이면 재현 | 계획. 다른 세션(`UATR_SLM_REPLAY`)이 착수 예정 → 결과를 받아 판정 |
+| EXP-001b (제안) | 분류기 3종 baseline: UATR-SLM(SenseVoiceSmall 234M, 음성 사전학습), SwinV2-Tiny(27.6M, ImageNet), ResNet-18(약 11M, DEMONet 백본) | 같은 UniqueShip 5C-Bal fold. 각 모델은 원 논문의 입력 표현을 따른다(fbank-LFR / Mel 256 90 dB / CQT). ResNet-18 설정은 DEMONet §4.3을 차용하되 5 s 클립에 맞게 변형 | 모델별 5 fold 평균 ± sd. Swin만 논문 수치와 대조 가능 | 사용자 제안 (2026-10-06). 개발은 1개 모델, 최종 확인은 3개 모델로 하는 안을 권고 |
+| EXP-002 | 범용 증강의 효과 (H-AUG-1) | EXP-001과 동일 + SpecAugment, 이어서 mixup. 한 번에 하나만 | 5 fold 평균 차이와 fold별 paired 차이 | EXP-001 이후 |
+| EXP-003 | 물리 기반 증강 1종 (H-AUG-2/3) | 문헌 조사 후 1종 선택 | EXP-002 대비 | 미정 |
+

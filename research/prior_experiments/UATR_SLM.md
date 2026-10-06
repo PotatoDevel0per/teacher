@@ -67,3 +67,8 @@ Huang et al., "From Human Speech to Ocean Signals: Transferring Speech Large Mod
 ## 7. 이 폴더가 이후 연구에 주는 의미 (`inferred`)
 
 6개 폴더 중 문제 정의가 가장 좁고, 3 seed와 대조군을 갖춘 실험이다. "분할 단위가 결과를 지배한다"는 주장은 이후 모든 폴더가 인용했다. 기초부터 다시 시작할 때 사용자가 **직접 재현하고 설명할 수 있어야 할 첫 실험**으로 적합하다.
+
+## 8. 후속: 분할 방식별 재실험 (2026-10-05, 다른 세션)
+
+- `handoffs/2026-10-05_from_UATR_SLM_REPLAY.md` 참조. DeepShip ①98.02 → ②65.06 → ④52.80, ShipsEar ①96.40 → ②73.12 → ④71.80
+- FunASR가 seed를 0으로 덮어쓰는 버그가 발견됐다. 위 §4의 9월 run이 영향을 받았는지는 `unknown`이다.

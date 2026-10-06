@@ -1,0 +1,33 @@
+paper_id: 2026_hashemi_uniqueship
+title: "UniqueShip: Mitigating Data Leakage in Acoustic Ship Classification Benchmark Datasets"
+authors: [Connor Hashemi, Trevor Stout, Anthony Hoogs, Jason Parham]
+year: 2026
+venue: "arXiv preprint (arXiv:2609.13659v1, 2026-09-12)"
+doi: "10.48550/arXiv.2609.13659"
+official_url: "https://arxiv.org/abs/2609.13659"
+pdf_path: "papers/pdf/2026_hashemi_uniqueship.pdf"
+code_url: "웹사이트에 코드 저장소 링크 없음 (2026-10-05 확인)"
+datasets: [UniqueShip (ONC), DeepShip, VTUAD]
+topics:
+  - underwater_acoustic
+  - uatr
+  - data_leakage
+  - benchmark
+status: read
+evidence_level: original_pdf_full
+reproduction_status: not_started
+relevance_to_user:
+  - "누출 없는 UATR baseline과 공개 분할 (5 Class - Balanced, 5 folds)"
+  - "선박 다양성 > 녹음 시간: 증강 연구의 동기가 될 수 있음"
+limitations:
+  - "증강·생성은 다루지 않음"
+  - "DeepShip과 같은 ONC 하이드로폰 출처 → 두 데이터셋 사이 선박·시간 중복 가능"
+  - "선박은 MMSI로만 분리, 날짜 분리는 하지 않음 (저자가 잔여 누수 가능성 언급)"
+download:  # 2026-10-05 확인 (uniqueshipdata.org)
+  host: "Google Drive 공개 폴더, 분할 zip(.z01..), 로그인 불필요, 권장 도구 rclone"
+  license: "CC-BY 4.0 (ONC 데이터 정책)"
+  subsets:
+    - {name: "5 Class - Balanced", zipped: "64.8 GB", unzipped: "92 GB", files: "main5_balanced.z01-.z06 + .zip + README.md", drive: "1G0e-2Nhi6CWKuBRStlR8GTtcGyYiT2h6"}
+    - {name: "12 Class - 5h Each", zipped: "17.8 GB", unzipped: "26 GB", files: "allclass_5hours.z01 + .zip + README.md", drive: "1HxV8AGh8ckZS3JehAU_gY2fuCnscX-eV"}
+    - {name: "12 Class - All", zipped: "646-656 GB", unzipped: "1.4 TB", drive: "1U3JvuzKK39Im__VbJkN7DRLdNAV2fUlN"}
+  status: "폴더 목록 조회 성공. 비로그인 gdown으로 README 다운로드 시 Drive 할당량 초과 오류 (Too many users)"

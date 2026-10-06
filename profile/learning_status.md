@@ -15,12 +15,12 @@
 | 개념 | 현재 수준 | 근거 | 다음 학습 |
 |---|---|---|---|
 | 선박 방사소음 | exposed | 기본 용어 확인 | 발생 원인과 성분 구분 |
-| 광대역 소음 | unknown |  |  |
-| 협대역 토널 | exposed |  | 토널 추적 실험 |
+| broadband 소음 | unknown |  |  |
+| tonal | exposed |  | tonal 추적 실험 |
 | 캐비테이션 | unknown |  |  |
 | PSD | basic | 신호처리 경험 | URN 분석 적용 |
-| LOFARgram | unknown |  |  |
-| DEMON 분석 | unknown |  |  |
+| LOFARgram | exposed | 2026-10-06: 시간-주파수 표현이라는 점은 안다 | 긴 window와 Δf, 배경 정규화 |
+| DEMON 분석 | basic | 2026-10-06 질문 1: 시간 집계 차이로 오해했다. 질문 2: "세기가 일정하면 포락선이 평평하다"를 스스로 설명했다 → 포락선(변조) 개념을 획득했다. band-pass의 역할(대역 밖 tonal 제거, 제곱에 의한 가짜 tonal 방지)은 아직 설명하지 못했다 | band-pass 대역 선택, 실제 DeepShip/UniqueShip 클립에 적용 |
 | 다중경로 | unknown |  |  |
 
 ## 생성모델

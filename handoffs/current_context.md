@@ -4,13 +4,13 @@
 
 WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 파이프라인을 연구한다.
 
-## 1차 목표 (2026-10-02 결정)
+## 1차 목표 (2026-10-06 결정)
 
-음향학적으로 타당한 WAV 생성. UATR 기여는 2차 목표다 (`research/decisions.md` D-2026-10-02-01).
+물리 기반 증강으로 UATR의 누출 없는 일반화를 개선한다. WAV 생성은 후순위다 (`research/decisions.md` D-2026-10-06-02).
 
 ## 현재 핵심 질문
 
-수중 표적 선박 소음을 생성할 때, WAV 파형 복원 가능성·토널 구조 보존·분포 유사성·UATR 성능·도메인 일반화를 함께 검증하려면 어떤 평가 체계가 필요한가?
+선박 분리 조건에서, 기존 녹음의 변형(범용 증강)이 아니라 "새 선박처럼 보이는" 물리 기반 변이를 만드는 증강이 UATR 일반화를 개선하는가?
 
 ## 확정된 사실
 
@@ -40,6 +40,11 @@ WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 
 - 6개 폴더의 조사 결과: `research/prior_experiments/README.md`
 - 모두 `hypothesis` 상태이며 사용자의 이해 근거로 쓰지 않는다 (`research/decisions.md` D-2026-09-30-01).
 - 폴더마다 DeepShip 분할이 달라 수치를 서로 비교하면 안 된다.
+
+## 현재 진행
+
+- UniqueShip 로컬 사본: `/jhlee/data/uniqueship/` (`research/datasets/uniqueship.md`)
+- UniqueShip baseline 재현: 다른 세션(`UATR_SLM_REPLAY`)이 진행 중이다. 결과를 기다린다.
 
 ## 현재 막힌 문제
 

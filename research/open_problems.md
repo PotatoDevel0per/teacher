@@ -17,4 +17,4 @@
 | OP9 | 논문 재현 gap이 미해결이다: UATR-SLM −1.58 pp, DEMONet 분류기 −4.9 pp. | UATR_SLM, PG-MCLDM | unknown |
 | OP10 | 논문 분할 자체에 선박 누수가 있다(Xie2024 track 59%, DEMONet Table 10 74%). 논문 수치와 선박 분리 결과를 어떻게 비교할지 정해지지 않았다. | ot-cfm, PG-MCLDM | unknown |
 | OP11 | "음향학적으로 타당한 WAV"의 정의와 판정 기준이 없다. 어떤 성분(토널, 광대역, DEMON, 시간 변화)을 어떤 지표와 임계로 판정할지 정해야 한다. | D-2026-10-02-01 | unknown: 1차 목표의 선행 과제 |
-| OP12 | 블레이드 수·축 회전수의 정답 라벨이 DeepShip에 없다. DEMON 추정값을 조건과 평가에 동시에 쓰면 순환 논증이 된다. | hypotheses.md H-LFM-3, DEMONet 노트 | unknown: 정답 라벨이 있는 근거 논문·데이터를 사용자가 탐색 중 |
+| OP12 | 블레이드 수·축 회전수의 정답 라벨이 DeepShip에 없다. DEMON 추정값을 조건과 평가에 동시에 쓰면 순환 논증이 된다. | hypotheses.md H-LFM-3, DEMONet 노트 | unknown: Hashmi & Raza 2023을 확인했으나 NOB 정확도와 공개 정답이 없음. Chung 2011, Pollara 2016 원문 확인 필요 |
