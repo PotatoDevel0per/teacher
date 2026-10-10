@@ -1,0 +1,35 @@
+paper_id: 2026_hummel_linear_probing
+title: "Linear probing enables Ship-Radiated Noise recognition with pretrained audio embeddings"
+authors: [Hilde I. Hummel, Sandjai Bhulai, Rob van der Mei, Burooj Ghani]
+year: 2026
+venue: "arXiv preprint (arXiv:2601.08358v2, 2026-09-22)"
+doi: "10.48550/arXiv.2601.08358"
+official_url: "https://arxiv.org/abs/2601.08358"
+pdf_path: "papers/pdf/2026_hummel_linear_probing.pdf"
+code_url: "https://github.com/hildeingvildhummel/Decodable_not_Structured (원문 각주 1, 저장소 내용 미확인)"
+datasets: [DeepShip, ShipsEar]
+pretrained_models:  # Table 2 + §3.2.1. 모두 frozen, linear probe
+  general_audio: [AudioMAE, BEATs, HuBERT AS]
+  speech: [Wav2Vec2.0, Data2Vec, WavLM, HuBERT]
+  bioacoustics: [BirdMAE, BirdNET, AvesEcho, Animal2Vec MK, Perch, Perch 2.0, AVES]
+  marine_life: [Google Whale, SurfPerch]
+  not_included: [PANNs, CLAP]  # 원문에서 다루지 않음
+topics:
+  - underwater_acoustic
+  - uatr
+  - transfer_learning
+  - pretrained_audio_embedding
+  - linear_probing
+status: read
+evidence_level: original_pdf_full   # 26쪽 전체 읽음 (2026-10-10). 23-26쪽은 참고문헌
+reproduction_status: not_started
+relevance_to_user:
+  - "frozen BEATs + linear probe: DeepShip 시간순 분할 65.4%, ShipsEar 74.0%. Mel 평균 + 로지스틱 회귀 baseline은 56.4% / 48.6%"
+  - "임베딩 공간의 전역 구조가 녹음 ID에 지배됨 (BEATs 녹음 ID NMI 0.62/0.66 vs 선박종류 NMI 0.13/0.22) → 녹음·선박 단위 분할이 필수라는 근거"
+  - "UniqueShip SwinV2 baseline 옆에 둘 값싼 비교 baseline 후보 (BEATs/Perch 2.0 frozen + linear probe)"
+limitations:
+  - "증강 사용 안 함"
+  - "UniqueShip 미평가. DeepShip 시간순 분할은 선박 단위 분리가 아님 (약 40% 기존 선박, 2025_hummel_contrastive_uatr §2.1.2)"
+  - "단일 실행, 표준편차 없음. linear probe 학습 설정, 입력 clip 길이, 시간 pooling 방식, 층 선택이 원문에 없음"
+  - "모델마다 샘플링레이트(8-48 kHz)와 window 길이(1-10 s)가 다름. 저주파 tonal 해상도 차이 통제 안 됨"
+  - "ShipsEar 전체 길이가 이 논문은 8시간, 2025 논문은 3시간 8분으로 서로 다름"

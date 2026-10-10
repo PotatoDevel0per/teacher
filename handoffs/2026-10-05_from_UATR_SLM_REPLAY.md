@@ -65,3 +65,28 @@
 - **이 세션의 평가 (`inferred`)**: 누출 조건에서 UATR-SLM이 앞선다는 것은 유의하다. 그러나 녹음·선박 분리 조건에서 UniqueShip이 앞선다는 것은 seed 3개로는 유의하지 않다(p 0.19, 0.45). 지지되는 것은 "순위 역전"이 아니라 **"누출 없는 조건에서는 234M 음성 모델의 우위가 사라진다"**는 데까지다.
 - 레벨 정규화 설명: 9월 D3(+2.83 pp)와 방향이 같다. 하지만 모델·특징·lr이 동시에 다르다(보낸 세션도 인정). 증강 연구와 관련 있는 가설로 기록해 둔다. 레벨(절대 음압) 정보는 녹음·거리 지름길일 수 있다.
 - 다음 계획(보낸 세션): `/jhlee/data/uniqueship/5class_balanced`로 논문 Table III(0.665 ± 0.012)를 직접 대조한다. 이 세션이 받은 데이터를 쓴다.
+
+---
+
+# 추가 수신 (2026-10-06): UniqueShip 5C-Bal baseline (EXP-001)
+
+- 산출물: `/jhlee/UATR_SLM/uniqueship_ds/`, `/jhlee/UATR_SLM/uniqueship_clf/runs/uniqueship_*` (10 run, 존재 확인)
+- 데이터: 이 세션이 받은 `/jhlee/data/uniqueship/5class_balanced`, 공식 MMSI 5-fold
+
+| 조건 | acc | 논문 acc | macro-F1 | 논문 F1 |
+|---|---|---|---|---|
+| official (누출 없음) | 67.30 ± 2.45 | 66.5 ± 1.2 | 65.81 ± 2.20 | 65.6 |
+| naive (클립 무작위) | 86.01 ± 0.34 | 82.6 ± 0.4 | 85.98 ± 0.36 | 82.6 |
+
+- fold별 official: 67.25 / 70.40 / 67.54 / 67.77 / 63.56. fold 5만 낮다.
+- naive와 official의 fold별 클립 수를 같게 맞췄다(데이터 규모 교란 제거).
+- 학습 거동: official은 조기 종료(best epoch 3–18), naive는 30 epoch 끝까지 좋아짐(best 28–29)
+- 클래스별 F1 (official): background 88.1 / tug 71.5 / cargo 66.5 / passengership 51.7 / tanker 51.1. 논문 부록 C와 같은 패턴(tanker 최저, cargo–tanker 혼동)
+- 편차: 16 kHz(논문 20 kHz), batch 64(미기재), best-val-macro-F1 체크포인트
+- 세 데이터셋 누출 하락폭 (UniqueShip 분류기 기준): DeepShip −38.5, ShipsEar −28.2, UniqueShip −20.2 pp. 클래스 수와 규모가 달라 직접 비교에는 주의
+
+## 이 세션의 판정 (`inferred`)
+
+- EXP-001 판정 기준(acc 0.665 ± 0.024) 통과 → **baseline 재현됨**. 이 세션이 fold 값으로 평균 67.30, sd 2.44를 재계산했다.
+- naive가 +3.4 pp 높은 원인은 미상이다. 연구 목표(누출 없는 조건)에는 영향이 적다.
+- **EXP-002에 주는 함의**: official fold 간 sd가 2.45 pp다. 증강 효과는 fold별 **paired 차이**로 봐야 한다. fold 5(63.56)처럼 튀는 fold가 결론을 좌우하지 않는지 확인해야 한다.

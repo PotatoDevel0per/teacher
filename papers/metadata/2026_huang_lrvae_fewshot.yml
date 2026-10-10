@@ -1,0 +1,31 @@
+paper_id: 2026_huang_lrvae_fewshot
+title: "A few-shot learning method for underwater acoustic target recognition based on generative data augmentation"
+authors: [Wei Huang, Qirui Zhang, Bowen Zhao, Tianhe Xu, Hao Zhang]
+year: 2026
+venue: "J. Acoust. Soc. Am. 159(5), 3773–3791 (2026-05-01). 특집호 'Generative and Physics-Informed Artificial Intelligence for Acoustics'"
+doi: "10.1121/10.0043727"
+official_url: "https://doi.org/10.1121/10.0043727"
+pdf_path: "papers/pdf/2026_huang_lrvae_fewshot.pdf"
+code_url: "없음. Data Availability: 교신저자에게 요청 시 제공 (원문 p.3791)"
+datasets: [ShipsEar (12 classes), DeepShip (4 classes)]
+topics:
+  - underwater_acoustic
+  - uatr
+  - generative_augmentation
+  - vae
+  - few_shot
+status: read
+evidence_level: original_pdf_full
+reproduction_status: not_started
+relevance_to_user:
+  - "생성 증강(VAE 재구성) UATR의 최신 JASA 사례. 지도교수의 생성 모델 방향과 직결되는 게재처 근거"
+  - "증강 비율 ablation(0–200%) 설계는 차용 가능한 평가 프로토콜"
+  - "생성 방법은 sampling이 아니라 학습 샘플 하나하나의 VAE 재구성 → 'LDM 생성 증강'과 비교할 약한 baseline 후보"
+limitations:
+  - "분할은 녹음(file) 단위 80/20. 선박 단위 분리는 언급 없음 (DeepShip은 한 선박이 여러 녹음을 가짐 → 선박 누수 가능)"
+  - "LR-VAE를 train split만으로 학습했는지 명시 없음. 생성 샘플이 test에 들어갔는지도 불명확 (Table I)"
+  - "생성물 품질의 정량 평가 없음 (Fig. 8 시각화와 downstream 정확도뿐)"
+  - "다른 생성 모델(GAN, plain VAE, diffusion)이나 SpecAugment와의 증강 비교 실험 없음"
+  - "본문 내 수치 불일치: Table III Full 95.56/90.6 vs Fig. 5·9 Full 92.3/88.8, latent 1024(식 14) vs 128(ablation), KL 0.1(식 19) vs β=0.5 최적"
+  - "반복 실행·표준편차 보고 없음. few-shot은 episodic N-way K-shot이 아니라 클래스당 학습 샘플 수 축소"
+  - "diffusion 선행연구(Yu 2025)는 이 논문에 인용되지 않음 (Gao 2026 JASA가 인용)"

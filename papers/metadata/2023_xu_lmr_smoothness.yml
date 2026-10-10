@@ -1,0 +1,31 @@
+paper_id: 2023_xu_lmr_smoothness
+title: "Underwater Acoustic Target Recognition based on Smoothness-inducing Regularization and Spectrogram-based Data Augmentation"
+authors: [Ji Xu, Yuan Xie, Wenchao Wang]
+year: 2023
+venue: "Ocean Engineering (2023), arXiv:2306.06945v3 (2024-04-30). PDF에는 'Preprint submitted to Elsevier'만 표기, 권·쪽·DOI는 PDF에서 확인 안 됨"
+doi: "10.48550/arXiv.2306.06945 (저널 DOI는 미확인)"
+official_url: "https://arxiv.org/abs/2306.06945"
+pdf_path: "papers/pdf/2023_xu_lmr_smoothness.pdf"
+code_url: "https://github.com/xy980523/SmoothReg-LMR-DataPrune–underwater-acoustic-recognition (원문 각주 2, 저장소 내용 미확인)"
+split_url: "https://github.com/xy980523/ShipsEar-An-Unofficial-Train-Test-Split (원문 각주 3, ShipsEar 분할만)"
+datasets: [ShipsEar (9 class), DeepShip (4 class), DTIL (private, 2 class)]
+topics:
+  - underwater_acoustic
+  - uatr
+  - data_augmentation
+  - regularization
+  - spectrogram_mixing
+status: read
+evidence_level: original_pdf_full
+reproduction_status: not_started
+relevance_to_user:
+  - "LMR(CutMix류 spectrogram 패치 교체)는 UniqueShip에서 범용(비물리) 증강 baseline 후보"
+  - "smoothness-inducing regularization(clean/noisy 예측 대칭 KL)은 물리 증강 샘플을 CE 대신 일관성 항으로만 쓰는 학습 방식의 비교군 후보"
+  - "noise aug·GAN aug가 일관된 이득을 주지 못했다는 보고 → '저품질 시뮬레이션 샘플은 해가 될 수 있다'는 물리 증강 연구의 위험 근거"
+limitations:
+  - "분할은 녹음 파일(audio track) 단위. 선박 단위 분리 아님 → 같은 선박의 다른 녹음이 train/test에 모두 있을 수 있음"
+  - "seed 수·표준편차 미보고 (단일 실행으로 보임)"
+  - "Table 3의 smooth reg 수치는 Table 5에서 α를 데이터셋·특징별로 골라 최고값을 옮긴 것으로 보임 (test 기준 선택 의심)"
+  - "ShipsEar test가 116 segment라 1 segment = 0.86 pp"
+  - "LMR의 a,b 분포, 패치 위치·개수, 짝 선택 방식이 수식 수준으로만 기술됨"
+  - "CutMix를 인용했지만 비교 실험 없음 (mixup과만 비교)"

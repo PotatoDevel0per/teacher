@@ -1,0 +1,29 @@
+paper_id: 2026_gao_knowledge_spectral_aug
+title: "Knowledge-inspired and sample-generation-based spectral augmentation for few-shot underwater acoustic target recognition"
+authors: [Wei Gao, Desheng Chen, Junhui Zhang, Xianda Zhang, Yining Liu]
+year: 2026
+venue: "J. Acoust. Soc. Am. 160(1), 603–618 (2026-07-16 온라인), 특집호 'Generative and Physics-Informed AI for Acoustics'"
+doi: "10.1121/10.0044413"
+official_url: "https://doi.org/10.1121/10.0044413"
+pdf_path: "papers/pdf/2026_gao_knowledge_spectral_aug.pdf"
+code_url: "원문에 코드 공개 언급 없음 (2026-10-10 PDF 확인). Data Availability는 ShipsEar, DanShip 원 출처만 인용"
+datasets: [ShipsEar (11 클래스, 배경 제외), DanShip (3 클래스, 교차 도메인 타깃)]
+topics:
+  - underwater_acoustic
+  - uatr
+  - few_shot
+  - spectrogram_augmentation
+  - prototypical_network
+status: read
+evidence_level: original_pdf_full
+reproduction_status: not_started
+relevance_to_user:
+  - "범용 스펙트로그램 증강(주파수 마스킹, SpecAugment, Mixup) 대비 비교 프로토콜의 참고 사례 (Fig. 6)"
+  - "'knowledge-inspired'라는 이름과 달리 물리 기반 증강이 아님: 스펙트로그램 이미지의 2D FFT 저역 통과/고역 잡음 치환 (§II.A, 저자 스스로 '물리적 분해가 아님'이라고 명시)"
+  - "clean 조건에서는 SDA가 SpecAugment·Mixup보다 낮음 → 잡음 주입이 없는 UniqueShip 설정에서 이득은 근거 없음"
+limitations:
+  - "few-shot 메타러닝 설정(클래스 단위 base/novel 분할). 녹음·선박 단위 분할 언급 없음; support/query를 같은 클래스 후보 풀(3 s 세그먼트)에서 뽑음 → 같은 녹음이 support와 query에 동시에 들어갈 수 있음"
+  - "DanShip 교차 도메인: 소스는 ShipsEar 전체(Fishing, Motorboats 포함), 타깃 DanShip 클래스(fishing, cargo, motorboats)와 의미상 겹침"
+  - "저 SNR 이득은 학습 때 같은 계열의 '자연 해양 잡음'을 주입(SNR U[-15,7] dB)한 뒤 같은 방식으로 잡음을 넣은 테스트에서 측정. 잡음 출처·분리 미기재"
+  - "seed 수, 학습 epoch, N-way 값, query 수, PSG 변환 A(·)의 구체 형태 미기재"
+  - "200 에피소드 95% CI를 3개 split 평균으로 보고. 학습 반복(독립 seed) 변동은 보고되지 않음"

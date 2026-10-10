@@ -20,7 +20,7 @@
 
 | ID | 목적 | 설정 | 판정 기준 | 상태 |
 |---|---|---|---|---|
-| EXP-001 | UniqueShip baseline 재현 | 5C-Bal 5 fold, SwinV2-Tiny + Mel, 20 kHz 리샘플(논문 §III-A, 배포본은 32 kHz), DC 제거, 90 dB 범위, AdamW lr 1e-6, 30 epoch. fold당 seed 1, 가능하면 3 | 정확도 평균이 0.665 ± 0.024(2 sd) 안이면 재현 | 계획. 다른 세션(`UATR_SLM_REPLAY`)이 착수 예정 → 결과를 받아 판정 |
+| EXP-001 | UniqueShip baseline 재현 | 5C-Bal 5 fold, SwinV2-Tiny + Mel, 20 kHz 리샘플(논문 §III-A, 배포본은 32 kHz), DC 제거, 90 dB 범위, AdamW lr 1e-6, 30 epoch. fold당 seed 1, 가능하면 3 | 정확도 평균이 0.665 ± 0.024(2 sd) 안이면 재현 | **판정: 재현됨 (2026-10-06)**. 실행: `UATR_SLM_REPLAY`. official acc 67.30 ± 2.45 (fold: 67.25/70.40/67.54/67.77/63.56), F1 65.81 (논문 65.6). naive acc 86.01 ± 0.34 (논문 82.6). 편차: 16 kHz(논문 20 kHz), batch 64(미기재), best-val 체크포인트(논문은 30 epoch 고정으로 추정). 표현: "논문 방법을 재현함(편차 3건)". 산출물: `/jhlee/UATR_SLM/uniqueship_clf/runs/uniqueship_*` |
 | EXP-001b (제안) | 분류기 3종 baseline: UATR-SLM(SenseVoiceSmall 234M, 음성 사전학습), SwinV2-Tiny(27.6M, ImageNet), ResNet-18(약 11M, DEMONet 백본) | 같은 UniqueShip 5C-Bal fold. 각 모델은 원 논문의 입력 표현을 따른다(fbank-LFR / Mel 256 90 dB / CQT). ResNet-18 설정은 DEMONet §4.3을 차용하되 5 s 클립에 맞게 변형 | 모델별 5 fold 평균 ± sd. Swin만 논문 수치와 대조 가능 | 사용자 제안 (2026-10-06). 개발은 1개 모델, 최종 확인은 3개 모델로 하는 안을 권고 |
 | EXP-002 | 범용 증강의 효과 (H-AUG-1) | EXP-001과 동일 + SpecAugment, 이어서 mixup. 한 번에 하나만 | 5 fold 평균 차이와 fold별 paired 차이 | EXP-001 이후 |
 | EXP-003 | 물리 기반 증강 1종 (H-AUG-2/3) | 문헌 조사 후 1종 선택 | EXP-002 대비 | 미정 |

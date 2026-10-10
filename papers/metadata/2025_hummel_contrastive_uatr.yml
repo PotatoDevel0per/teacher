@@ -1,0 +1,30 @@
+paper_id: 2025_hummel_contrastive_uatr
+title: "The Computation of Generalized Embeddings for Underwater Acoustic Target Recognition using Contrastive Learning"
+authors: [Hilde I. Hummel, Arwin Gansekoele, Sandjai Bhulai, Rob van der Mei]
+year: 2025
+venue: "arXiv preprint (arXiv:2505.12904v1, 2025-05-19). 게재본: Applied Acoustics 243 (2026) 111103 (2026_hummel_linear_probing의 참고문헌 [11]에서 확인, 게재본 PDF는 미확보)"
+doi: "10.48550/arXiv.2505.12904 (게재본: 10.1016/j.apacoust.2025.111103)"
+official_url: "https://arxiv.org/abs/2505.12904"
+pdf_path: "papers/pdf/2025_hummel_contrastive_uatr.pdf"
+code_url: "https://github.com/hildeingvildhummel/UATR (원문 각주 2, 저장소 내용 미확인)"
+datasets: [ONC SCVIP 하이드로폰 무라벨 데이터 (2019-09 ~ 2020-12, 30 GB), DeepShip, ShipsEar, Best of Watkins]
+topics:
+  - underwater_acoustic
+  - uatr
+  - self_supervised_learning
+  - contrastive_learning
+  - augmentation
+status: read
+evidence_level: original_pdf_full   # arXiv v1 23쪽 전체 읽음 (2026-10-10). 게재본과 차이 가능
+reproduction_status: not_started
+relevance_to_user:
+  - "UATR에서 증강 종류별 비교표가 있는 몇 안 되는 논문 (저역통과, Gaussian noise, 대역 mixup, 음성용 gain/reverb/pitch/polarity)"
+  - "DeepShip 시간순 분할(2017-11까지 학습 / 2017-12부터 테스트) 프로토콜 제안. 테스트 샘플 약 60%가 새 선박"
+  - "음성용 증강 확장: 지도 CL에서는 DeepShip +4.7~9.1 pp, 비지도 CL에서는 ShipsEar/Watkins 하락"
+limitations:
+  - "증강은 대조학습의 positive pair 생성용이다. 지도 분류기의 학습 데이터 증강 효과를 직접 측정한 것이 아니다"
+  - "단일 실행, 표준편차·반복 없음. Table 1과 Table 3의 같은 설정(Combined) 수치가 서로 다름"
+  - "음성용 증강(gain, reverb, pitch, polarity)의 파라미터가 원문에 없음"
+  - "DeepShip 시간순 분할도 테스트의 약 40%는 학습에 나온 선박 → 선박 단위 누출 남음"
+  - "ShipsEar/Watkins 80/20 분할 단위(녹음 vs window)가 원문에 명시되지 않음"
+  - "무라벨 사전학습 데이터가 UniqueShip과 같은 ONC 해역 → UniqueShip에 그대로 쓰면 선박 중복 가능"
