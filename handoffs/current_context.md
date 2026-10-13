@@ -7,6 +7,7 @@ WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 
 ## 1차 목표 (2026-10-06 결정)
 
 물리 기반 증강으로 UATR의 누출 없는 일반화를 개선한다. WAV 생성은 후순위다 (`research/decisions.md` D-2026-10-06-02).
+조건부 LDM 생성(DEMON·LOFAR 조건)은 물리 기반 증강의 후보 방법 중 하나로 본다 (D-2026-10-13-02). 순서: AE 복원 상한 → 무조건 LDM → 조건부 LDM → 조건 조작 증강 → UATR 평가.
 
 ## 현재 핵심 질문
 
@@ -28,8 +29,8 @@ WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 
 ## 현재 상태
 
 - [ ] 데이터셋 최종 선정
-- [ ] UATR baseline
-- [ ] feature-space augmentation 재현
+- [x] UATR baseline (EXP-001, UniqueShip SwinV2)
+- [ ] feature-space augmentation 재현 (EXP-002-PC(a) 진행 중)
 - [ ] WAV 복원 baseline
 - [ ] 토널 평가 지표
 - [ ] 도메인 특화 임베더
@@ -41,10 +42,20 @@ WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 
 - 모두 `hypothesis` 상태이며 사용자의 이해 근거로 쓰지 않는다 (`research/decisions.md` D-2026-09-30-01).
 - 폴더마다 DeepShip 분할이 달라 수치를 서로 비교하면 안 된다.
 
-## 현재 진행
+## 현재 진행 (2026-10-12 갱신)
+
+실험 전체 목록과 상태: `research/experiment_registry.md`. 실행은 모두 `UATR_SLM_REPLAY` 세션이 한다.
+
+| 실험 | 상태 | 문서 |
+|---|---|---|
+| EXP-001 UniqueShip baseline (SwinV2 + Mel) | 재현됨: acc 67.30 ± 2.45 | `research/experiment_registry.md` |
+| EXP-002-PC(a) LMR 양성 대조군 (DeepShip, Xu J. 2023 재현) | Δ 재현됨(+2.34). 단계 2: baseline 70% 재현 중. D2 분할 채택. B0 3 seed: last 68.00(기준 미달), best-val 70.37. D4 미채택. D6(누수 없는 val) best-val 67.92, 미달. baseline 절대값 재현하지 못함. 다음 경로 사용자 결정 대기 | `research/experiments/EXP-002-PC_lmr_positive_control.md` |
+| EXP-002 범용 증강 A1–A4 (UniqueShip MMSI 분할) | 보류. PC(a) 결과를 보고 재개한다. ② 반영(헤드 초기화 시드, A0 5 fold 재실행) | `research/experiments/EXP-002_generic_augmentation.md` (하단 편차·결정 기록) |
+| EXP-002-PC(b) naive vs MMSI 분할 | 미승인 | registry |
+| EXP-003 물리 기반 증강 | 미정 | — |
 
 - UniqueShip 로컬 사본: `/jhlee/data/uniqueship/` (`research/datasets/uniqueship.md`)
-- UniqueShip baseline 재현: 다른 세션(`UATR_SLM_REPLAY`)이 진행 중이다. 결과를 기다린다.
+- 측정된 실행 잡음: 같은 설정을 다시 돌렸을 때 acc +1.12 pp (1표본, 헤드 초기화 비시드)
 
 ## 현재 막힌 문제
 
@@ -66,3 +77,17 @@ WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 
 - `research/open_problems.md`
 - `research/decisions.md`
 - `papers/index.md`
+## 대기 상태와 다음 할 일 (2026-10-13)
+| 세션 | 상태 | 다음 |
+|---|---|---|
+| LOFAR | seed 추가 50 run 실행 중(약 7–8 h) | 완료 보고 → 사전학습 모델 HT 이득 부호 판정 → EXP-LOFAR-001 마무리 |
+| DEMON | 합성 단계 완료, 실행 없음 | 사용자 결정 대기: 2b-2 / 단계 3 소규모(Teacher 추천) / 마무리 |
+| UATR_SLM_REPLAY | 실행 없음 | 사용자 결정 대기: 누수 무작위 분할 점검 1 run, LMR 비교 진행, PC 종료 중 택일 |
+
+- **완료 후 할 일:** D-2026-10-13-02에 따라 조건부 LDM 증강 설계 초안을 쓴다. 사용자는 LDM 원문을 공부하는 중이다.
+- **설계 때 반드시 반영할 이전 교훈** (PG-MCLDM, 미검증):
+  - 생성물 tonal F1은 0.2다(실데이터 0.66).
+  - DEMON 변조를 만들지 못했다(신뢰비 0.007–0.018).
+  - 물리 손실(Phase 3)은 기각됐다.
+  - 증강 이득은 +0.66 pp로 유의하지 않았다(seed 1개, 선박 누수 분할).
+  - 따라서 AE 복원본의 tonal·DEMON 보존을 첫 게이트로 둔다.

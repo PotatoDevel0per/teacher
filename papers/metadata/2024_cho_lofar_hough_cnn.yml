@@ -1,0 +1,25 @@
+paper_id: 2024_cho_lofar_hough_cnn
+title: "Lofargram analysis and identification of ship noise based on Hough transform and convolutional neural network model (허프 변환과 CNN 모델 기반 선박 소음의 로파그램 분석 및 식별)"
+authors: [Junbeom Cho, Yonghoon Ha]
+year: 2024
+venue: "The Journal of the Acoustical Society of Korea 43(1):19-28"
+doi: "10.7776/ASK.2024.43.1.019"
+official_url: "https://www.jask.or.kr/articles/xml/aPRG/"
+pdf_path: "papers/pdf/2024_cho_lofar_hough_cnn.pdf"   # 10 pages, uploaded by user 2026-10-12
+code_url: ""
+datasets: [DeepShip, ShipsEar]
+topics: [lofar, hough_transform, tonal_line, cnn_classification]
+status: read   # key sections checked against the original PDF
+evidence_level: original_pdf
+reproduction_status: not_started
+sci_status: unknown   # KCI journal; SCIE listing not verified
+relevance_to_user:
+  - "Simple non-learning tonal detection (Hough, horizontal lines only); candidate extra baseline for the LOFAR study"
+  - "Uses DeepShip"
+limitations:
+  - "Feature extraction itself is not evaluated quantitatively (no tonal ground truth, no detection rate); only classification accuracy"
+  - "1-min segments split 7:3, apparently at random -> same recording can land in train and test (leakage). Gains +3.56 to +5.70 pp are single runs"
+  - "Passenger class may mix ShipsEar and DeepShip -> possible dataset shortcut"
+  - "Missing: window function, delta-f, normalization method, edge detector, rho/theta resolution. Hough threshold = 130 (accumulator votes, Fig. 6, set visually). 'Window size 100' has no unit: 100 samples at 32 kHz gives delta-f = 320 Hz, which contradicts the 15.2 Hz harmonic analysis in Fig. 8"
+  - "No validation set mentioned; 7:3 split of the generated images"
+  - "Text F1 gain 0.0431-0.059 does not match Table 6 (0.0380-0.0583)"

@@ -1,0 +1,27 @@
+paper_id: 2020_han_deeplofargram
+title: "DeepLofargram: A deep learning based fluctuating dim frequency line detection and recovery"
+authors: [Yina Han, Yuyan Li, Qingyu Liu, Yuanliang Ma]
+year: 2020
+venue: "The Journal of the Acoustical Society of America 148(4):2182-2194"
+doi: "10.1121/10.0002172"
+official_url: "https://doi.org/10.1121/10.0002172"
+preprint_url: "https://arxiv.org/abs/1912.00605"
+pdf_path: "papers/pdf/2020_han_deeplofargram.pdf"   # arXiv 1912.00605v1 (2019-12-02, 5 pages, only arXiv version). JASA version (13 pages) not obtained: pubs.aip.org 403
+code_url: ""
+datasets: [unverified]
+topics: [underwater_acoustic, lofar, tonal_detection, frequency_line_recovery, deep_learning]
+status: read   # arXiv v1 only; JASA version likely differs (23 vs 34 refs, adds U-Net/HED/Harris 1978)
+evidence_level: original_pdf_full   # arXiv v1 5 pages + TeX source read (2026-10-12). Published version may differ
+reproduction_status: not_started   # on hold: selection verdict pending JASA version (see notes)
+relevance_to_user:
+  - "Detects and recovers weak, fluctuating tonal lines in a LOFARgram (output: pixel probability map; trajectory needs post-processing)"
+  - "Single-channel LOFARgram input, so it applies to DeepShip and UniqueShip"
+  - "Can evaluate tonal preservation (OP6) and support tonal-based augmentation design"
+limitations:
+  - "arXiv v1: single line + white Gaussian noise only, synthetic data only, no real data"
+  - "Output is a pixel probability map (gradient saliency), not a numeric trajectory; detection is per-lofargram"
+  - "Synthesis/STFT parameters missing in arXiv v1; time-domain SNR not transferable without FFT length"
+  - "No numeric tables, 200 test images, single run; no code released"
+  - "Full-scale training (AlexNet/VGG, 100K iter, double backprop) needs GPU"
+selection_note: "2026-10-12 tentative choice for the LOFAR study (handoffs/2026-10-12_to_LOFAR.md)"
+selection_verdict: "2026-10-12 ON HOLD. arXiv v1: criterion (b) met (ROC, LLA); (a) not met (fs, random-walk params, STFT window/df, freq range, normalization, label line width missing; delegated to Paris & Jauffret 2003). Requested JASA version from user."

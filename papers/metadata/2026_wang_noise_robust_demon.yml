@@ -1,0 +1,24 @@
+paper_id: 2026_wang_noise_robust_demon
+title: "Noise-Robust DEMON Spectrum Extraction for Ship-Radiated Noise via Adaptive Decomposition and Sparse Reconstruction"
+authors: [Zikai Wang, Juan Hui, Weiyu Tan, Wenwu Wang]   # from PDF p.1
+year: 2026
+venue: "Journal of Marine Science and Engineering 14(16):1459 (published 2026-08-07)"
+doi: "10.3390/jmse14161459"
+official_url: "https://www.mdpi.com/2077-1312/14/16/1459"
+pdf_path: "papers/pdf/2026_wang_noise_robust_demon.pdf"   # 22 pages, uploaded by user 2026-10-12
+code_url: ""
+datasets: [numerical simulation, lake trial (unpublished)]
+topics: [underwater_acoustic, demon, adaptive_band_selection, eemd, higher_order_statistics, sparse_bayesian_learning, shaft_frequency]
+status: read
+evidence_level: original_pdf_full
+reproduction_status: partial_stage2b1_done  # 2026-10-13, EXP-DEMON-001; H-PRE-3 not supported (synthetic); variant (d) R_j/var recovered to BP-MID/ORACLE level on new seeds, see notes
+relevance_to_user:
+  - "Selects the DEMON frequency band adaptively with EEMD; directly related to H-PRE-3"
+  - "Targets shaft frequency and its harmonics under low modulation depth"
+limitations:
+  - "Outputs a DEMON spectrum only; no numeric shaft-frequency, blade-number or shaft-count estimation"
+  - "Metrics are LSC and SHLSNR only (background-relative); no frequency error or detection rate; sparse SBL output inflates them"
+  - "Method comparison uses a single realization; Monte Carlo (50) only for robustness of the proposed method, means without spread"
+  - "No fixed band-pass DEMON baseline; lake trial has no rpm ground truth; data not public"
+  - "Missing: EEMD ensemble K, cumulant lag length, SBL grid spacing and pruning threshold, R_j frequency range, simulation SNR; modulation-depth definition is contradictory (Sec 4.1 vs 4.3.1)"
+selection_note: "2026-10-12 conditionally confirmed after full-text reading by DEMON session (see notes); reproduction will be partial-module with stated choices"
