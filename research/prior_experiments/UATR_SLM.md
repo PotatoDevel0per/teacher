@@ -1,6 +1,6 @@
 # UATR_SLM — UATR-SLM 재현과 분할 누수 측정
 
-- 경로: `/jhlee/UATR_SLM` (27 GB, git 없음)
+- 경로: `/jhlee/UWShipNoise/recognition/UATR_SLM` (27 GB, git 없음)
 - 기간: 2026-09-05 (본 실험), 09-08 (`deepship_split/`, `deepship_repr/` 추가)
 - 성격: **인식(분류)** 재평가 연구. 생성 모델은 없다.
 - 전체 상태: `hypothesis` (Claude와 약식으로 진행, 미검증). 표기 규칙은 [README.md](README.md) §0.
@@ -11,7 +11,7 @@ Huang et al., "From Human Speech to Ocean Signals: Transferring Speech Large Mod
 
 ## 2. 데이터
 
-- 원천: `/jhlee/data/deepship`, 609 녹음 / 47.22 h / 32 kHz `[문서]`
+- 원천: `/jhlee/UWShipNoise/data/deepship`, 609 녹음 / 47.22 h / 32 kHz `[문서]`
 - 5 s 비중첩 클립 33,770개. 논문은 33,693개(+0.23%) `[문서]`
 - 입력: 16 kHz(soxr VHQ) → kaldi fbank 80 mel(25/10 ms) → LFR(m=7, n=6) → (83, 560) → SenseVoice `am.mvn` CMVN. FunASR 원본과 max|Δ| = 0 `[문서]`
 - 캐시: `data/clips/feats.f16`, `feats_rmsnorm.f16` (각 3.1 GB)

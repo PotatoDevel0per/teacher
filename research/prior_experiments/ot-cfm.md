@@ -1,7 +1,7 @@
 # ot-cfm — 30 s 2-stream 스펙트로그램 조건부 생성, CFM vs DDIM ("라운드 2")
 
-- 경로: `/jhlee/ot-cfm` (6.0 GB, git init만 되고 커밋 0)
-- 기간: 2026-09-10 ~ 09-29. 주요 라운드는 09-11 ~ 09-13, URN 감사는 09-23(외부 감사자 `/jhlee/Workspace`)
+- 경로: `/jhlee/UWShipNoise/generation/ot-cfm` (6.0 GB, git init만 되고 커밋 0)
+- 기간: 2026-09-10 ~ 09-29. 주요 라운드는 09-11 ~ 09-13, URN 감사는 09-23(외부 감사자 `/jhlee/UWShipNoise/legacy/Workspace`)
 - 전체 상태: `hypothesis`. 표기 규칙은 [README.md](README.md) §0.
 
 ## 1. 문제 정의
@@ -10,7 +10,7 @@ deepship_preprocessing의 30 s 2-stream 선형 dB 스펙트로그램을 클래�
 
 ## 2. 데이터
 
-- `/jhlee/deepship_preprocessing/deepship_pipeline`을 읽기 전용으로 소비한다. 전처리 코드는 복사본이다(`src/deepship_prep`, 일부 파일은 원본과 다름).
+- `/jhlee/UWShipNoise/data_analysis/deepship_preprocessing/deepship_pipeline`을 읽기 전용으로 소비한다. 전처리 코드는 복사본이다(`src/deepship_prep`, 일부 파일은 원본과 다름).
 - 분할 `ship_disjoint`: train 4,288 / 171척, val 535 / 18척, test 537 / 31척. 누수 0. test Tug 2척
 - 학습 232 프레임(29.568 s), per-bin z 정규화(train에서만 산출)
 

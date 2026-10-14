@@ -54,7 +54,8 @@ WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 
 | EXP-002-PC(b) naive vs MMSI 분할 | 미승인 | registry |
 | EXP-003 물리 기반 증강 | 미정 | — |
 
-- UniqueShip 로컬 사본: `/jhlee/data/uniqueship/` (`research/datasets/uniqueship.md`)
+- 실험 폴더는 2026-10-14부터 `/jhlee/UWShipNoise/` 아래에 있다. 색인: `/jhlee/UWShipNoise/README.md`. 체크포인트와 캐시는 정리됐다(D-2026-10-14-02).
+- UniqueShip 로컬 사본: `/jhlee/UWShipNoise/data/uniqueship/` (`research/datasets/uniqueship.md`)
 - 측정된 실행 잡음: 같은 설정을 다시 돌렸을 때 acc +1.12 pp (1표본, 헤드 초기화 비시드)
 
 ## 현재 막힌 문제

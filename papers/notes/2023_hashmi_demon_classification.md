@@ -58,4 +58,4 @@ DEMON 스펙트럼에서 축 회전수(SRPM), 날개 수(NOB), 축 수(NOS)를 �
 
 - OP12(블레이드 수 정답 부재)는 해결되지 않는다. 이 논문은 공개 데이터의 샘플별 NOB 정답을 제공하지 않는다.
 - 대역 자동화의 출발점으로는 유용하다. Chung 2011과 Pollara 2016의 "포락선 SNR 최대화"가 이미 자동 선택 기준이다(원문 미확인).
-- 관련 코드: `/jhlee/ot-cfm/src/features/demon.py`, `/jhlee/PG-MCLDM/pg_mcldm/features/demon.py`(합성 AM 검증 있음, 미검증 상태)
+- 관련 코드: `/jhlee/UWShipNoise/generation/ot-cfm/src/features/demon.py`, `/jhlee/UWShipNoise/generation/PG-MCLDM/pg_mcldm/features/demon.py`(합성 AM 검증 있음, 미검증 상태)

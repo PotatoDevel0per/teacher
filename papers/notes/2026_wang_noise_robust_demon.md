@@ -125,7 +125,7 @@ EEMD로 신호를 여러 IMF로 나눈 뒤 "포락선 스펙트럼 최댓값이 
 
 ## 단계 2 재현 설계 (2026-10-12, 결과를 보기 전에 작성)
 
-재현 표현: **"일부 모듈 재현 + 미기재 값 직접 결정"**. 코드: `/jhlee/DEMON/demon_repro/`
+재현 표현: **"일부 모듈 재현 + 미기재 값 직접 결정"**. 코드: `/jhlee/UWShipNoise/features/DEMON/demon_repro/`
 
 ### 변조 깊이 모순의 해석 (선택과 이유)
 - 채택: **a = 3 → 깊이 0.6 (Table 2), a = 6 → 깊이 0.75 (Table 1)**. 즉 §4.1 문장의 대응 순서가 뒤바뀐 것으로 본다.
@@ -205,8 +205,8 @@ EEMD로 신호를 여러 IMF로 나눈 뒤 "포락선 스펙트럼 최댓값이 
 
 ## 단계 2a 결과 (2026-10-12, 원문 조건, `confirmed` = 이 세션의 직접 실험)
 
-- 코드: `/jhlee/DEMON/run_stage2a.py`, `run_stage2a_sbl_sens.py`, `summarize_stage2a.py`, `demon_repro/`
-- 결과: `/jhlee/DEMON/results/stage2a/`
+- 코드: `/jhlee/UWShipNoise/features/DEMON/run_stage2a.py`, `run_stage2a_sbl_sens.py`, `summarize_stage2a.py`, `demon_repro/`
+- 결과: `/jhlee/UWShipNoise/features/DEMON/results/stage2a/`
   - `summary.md`: 전체 표
   - `metrics.csv`
   - `sbl_sensitivity.csv`
@@ -323,7 +323,7 @@ EEMD로 신호를 여러 IMF로 나눈 뒤 "포락선 스펙트럼 최댓값이 
 - 재생성이 맞는지는 다른 고정 BP(BP-WIDE)를 함께 다시 계산해 본 실행 값과 일치하는지로 확인한다.
 
 ## 단계 2b-1 결과 (2026-10-12, EXP-DEMON-001, `confirmed` = 이 세션의 직접 실험)
-- 실행: 5 SNR × 2 a × 20 seed = 200개 신호, CPU 40 worker, 약 80분. 원자료는 `/jhlee/DEMON/results/stage2b1/`(`metrics.csv`, `metrics_bpmid.csv`, `summary.md`)에 있다.
+- 실행: 5 SNR × 2 a × 20 seed = 200개 신호, CPU 40 worker, 약 80분. 원자료는 `/jhlee/UWShipNoise/features/DEMON/results/stage2b1/`(`metrics.csv`, `metrics_bpmid.csv`, `summary.md`)에 있다.
 - BP-MID 재생성 확인: 다시 계산한 BP-WIDE가 본 실행 값과 완전히 같다(f0와 하모닉 비율 최대 차이 0, n = 200). 따라서 BP-MID는 본 실행과 같은 신호에서 계산한 것이다.
 - 적응 규칙은 발동하지 않았다. ORACLE이 −25 dB에서 0% / 5%이고, 0 dB에서 100%다. SNR 단계를 추가하지 않았다.
 - SNR 대응(실측, 20 seed 평균): 변조 대역 SNR = 전대역 + 6.1 dB(a=3) / + 6.3 dB(a=6), sd ≤ 0.2 dB.
@@ -401,7 +401,7 @@ EEMD로 신호를 여러 IMF로 나눈 뒤 "포락선 스펙트럼 최댓값이 
 
 ## 단계 2b-1 사후 보강 (2026-10-12~13, teacher 승인, 결과를 본 뒤 추가 → 주 판정에 쓰지 않음)
 ### (a) SNR −12.5 / −17.5 dB 추가 (같은 seed 20개, 같은 방법·판독기)
-- 재생성 확인: BP-WIDE 차이 0(n = 80). 원자료: `/jhlee/DEMON/results/stage2b1_posthoc/summary.md`
+- 재생성 확인: BP-WIDE 차이 0(n = 80). 원자료: `/jhlee/UWShipNoise/features/DEMON/results/stage2b1_posthoc/summary.md`
 - f_s 정답률 %, a=3 / a=6:
 
 | 방법 | −12.5 dB | −17.5 dB |
@@ -420,7 +420,7 @@ EEMD로 신호를 여러 IMF로 나눈 뒤 "포락선 스펙트럼 최댓값이 
 
 ### (c) EEMD 선택 실패 분석 (진단, 방법 변경·판정 없음)
 - 방법: −10 / −15 dB의 80개 신호와 EEMD 앙상블을 같은 난수열로 다시 만들었다. 다시 계산한 선택 IMF는 본 실행과 일치한다(40/40 확인). IMF마다 다음을 기록했다: 중심 주파수 fc, R_j, 분산, 200–1000 Hz 파워 비율, 그 IMF 하나의 포락선으로 읽은 f_s.
-- 원자료: `/jhlee/DEMON/results/stage2b1/selfail.jsonl`, `selfail_summary.csv`. 스크립트: `run_stage2b1_selfail.py`, `analyze_selfail.py`.
+- 원자료: `/jhlee/UWShipNoise/features/DEMON/results/stage2b1/selfail.jsonl`, `selfail_summary.csv`. 스크립트: `run_stage2b1_selfail.py`, `analyze_selfail.py`.
 
 **확인한 것 (`confirmed`)**
 1. 선택은 늘 IMF **하나**다. 정답 대역에 가장 많이 들어 있는 후보는 모든 seed에서 IMF index 3이다(fc 약 350–365 Hz, 200–1000 Hz 파워 비율 0.93–0.96).
@@ -472,7 +472,7 @@ EEMD로 신호를 여러 IMF로 나눈 뒤 "포락선 스펙트럼 최댓값이 
 - 판정 실행: seed 20–39, 120개 신호, 2026-10-13 03:03 UTC 시작. CPU 40 worker, 예상 약 50분.
 
 ### (d) 판정 결과 (seed 20–39, 새 EEMD, 120개 신호, `confirmed` = 직접 실험)
-- 원자료: `/jhlee/DEMON/results/variant_d/` (`variant_d.jsonl`, `summary.md`). 스크립트: `run_variant_d.py`, `summarize_variant_d.py`. 감독 스크립트에서 재시작 없이 완료됐다(03:03–03:42 UTC).
+- 원자료: `/jhlee/UWShipNoise/features/DEMON/results/variant_d/` (`variant_d.jsonl`, `summary.md`). 스크립트: `run_variant_d.py`, `summarize_variant_d.py`. 감독 스크립트에서 재시작 없이 완료됐다(03:03–03:42 UTC).
 
 f_s 정답률 % (n = 20):
 

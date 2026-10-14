@@ -1,6 +1,6 @@
 # UniqueShip 로컬 사본
 
-- 위치: `/jhlee/data/uniqueship/`
+- 위치: `/jhlee/UWShipNoise/data/uniqueship/`
 - 받은 날짜: 2026-10-05. 받은 방법: rclone(`jhlee_remote`, 공유 폴더 `--drive-root-folder-id`). 원본은 Dataset Version 1.0
 - 무결성: rclone check 차이 0건, `unzip -t` 오류 없음
 - 논문 노트: `papers/notes/2026_hashemi_uniqueship.md`

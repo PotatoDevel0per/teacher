@@ -1,6 +1,6 @@
 # DEMONet (Xie et al., 2024, arXiv:2411.02758)
 
-- 원문: `/jhlee/ot-cfm/docs/DEMONet.pdf` (2026-10-02 일부 확인: 초록, §1, §3.1–3.2 도입부)
+- 원문: `/jhlee/UWShipNoise/generation/ot-cfm/docs/DEMONet.pdf` (2026-10-02 일부 확인: 초록, §1, §3.1–3.2 도입부)
 - 읽은 범위가 부분적이다. 아래에서 `confirmed`는 해당 구절을 원문에서 직접 확인했다는 뜻이다.
 
 ## 한 문장 요약

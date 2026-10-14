@@ -2,7 +2,7 @@
 
 - 작성일: 2026-09-30
 - 조사 방법: Claude 서브에이전트 5개가 각 폴더를 **읽기 전용**으로 조사(문서·config·코드·로그·결과 json). 재실행·재계산 없음.
-- 대상: `/jhlee/DGM`, `/jhlee/deepship_analysis`, `/jhlee/UATR_SLM`, `/jhlee/deepship_preprocessing`, `/jhlee/ot-cfm`, `/jhlee/PG-MCLDM`
+- 대상: `/jhlee/UWShipNoise/generation/DGM`, `/jhlee/UWShipNoise/data_analysis/deepship_analysis`, `/jhlee/UWShipNoise/recognition/UATR_SLM`, `/jhlee/UWShipNoise/data_analysis/deepship_preprocessing`, `/jhlee/UWShipNoise/generation/ot-cfm`, `/jhlee/UWShipNoise/generation/PG-MCLDM`
 
 ## 0. 이 아카이브를 읽는 규칙 (중요)
 
@@ -28,8 +28,8 @@
 의존 관계 `[확인]`:
 
 ```
-/jhlee/data/deepship (609 녹음, 32 kHz) + ship_id.csv (출처 불명의 휴리스틱 매칭)
- ├─ DGM ── (/jhlee/Underwater_Acoustic/.../deepship_split4) ──┐ physmetrics, cfm.py 등 재사용
+/jhlee/UWShipNoise/data/deepship (609 녹음, 32 kHz) + ship_id.csv (출처 불명의 휴리스틱 매칭)
+ ├─ DGM ── (/jhlee/UWShipNoise/legacy/Underwater_Acoustic/.../deepship_split4) ──┐ physmetrics, cfm.py 등 재사용
  ├─ UATR_SLM ── deepship_split/manifest.csv (ship_id) ──┐     │
  │                                                        ▼     ▼
  ├─ deepship_preprocessing ── ship_disjoint split, 2-stream repr ──▶ ot-cfm (코드 복사 + 산출물 소비)
@@ -38,7 +38,7 @@
  └─ deepship_analysis (보코더·톤 결론을 preprocessing/PG-MCLDM이 문서로 인용)
 ```
 
-폴더 밖 의존성: `/jhlee/Workspace/src`(FAD 구현 `urn.eval.fad`, ot-cfm과 PG-MCLDM이 import), `/jhlee/Underwater_Acoustic/`(DGM의 데이터·보코더), `/jhlee/hifigan`(PG-MCLDM).
+폴더 밖 의존성: `/jhlee/UWShipNoise/legacy/Workspace/src`(FAD 구현 `urn.eval.fad`, ot-cfm과 PG-MCLDM이 import), `/jhlee/UWShipNoise/legacy/Underwater_Acoustic/`(DGM의 데이터·보코더), `/jhlee/hifigan`(PG-MCLDM).
 
 ## 2. 가장 중요한 공통 경고: 분할이 최소 4개다
 
@@ -86,23 +86,23 @@
 
 | 범주 | 자산 | 경로 | 주의 |
 |---|---|---|---|
-| 메타데이터 | 609 파일 인벤토리(선박, AIS 거리, DC, 클리핑) | `/jhlee/deepship_analysis/deepship_analysis/file_manifest.csv` | ship_id는 휴리스틱 매칭, 잘린 선박명 있음 |
-| 메타데이터 | 녹음·세그먼트·조건 표 | `/jhlee/deepship_preprocessing/deepship_pipeline/{recordings,segments,conditions}.parquet` | 거리 보간 45%가 비정상해 |
-| 분할 | 누수 검사 포함 S0/S1/S2 (3 seed) | `/jhlee/UATR_SLM/data/splits/` | |
-| 분할 | 선박 분리 30 s | `/jhlee/deepship_preprocessing/deepship_pipeline/splits/ship_disjoint.json` | test Tug 2척 |
-| 분할 | 논문 분할 전사 (Xie2024 track, DEMONet Table 10) | `/jhlee/ot-cfm/data/splits/xie2024_*.json`, `/jhlee/PG-MCLDM/splits/deepship_table10.json` | 논문 분할 자체에 선박 누수 있음(59%, 74%) |
-| 코드 | 3계층 누수 검사, 그룹 분할 | `/jhlee/UATR_SLM/src/split.py` | |
-| 코드 | 정적 특징 82차원 + MLP 지름길 baseline | `/jhlee/UATR_SLM/src/diag_d1.py` | 모든 UATR 결과의 대조군 후보 |
-| 코드 | 분류기 (CQT/STFT/Mel + ResNet-18, TRTR/TSTR/few-shot) | `/jhlee/PG-MCLDM/pg_mcldm/classifier/train.py` | G0 재현 미통과(72.2 vs 77.15) |
-| 코드 | DSP(FIR 데시메이션, sos HPF), TPSW/CFAR, CPA 기하 | `/jhlee/deepship_preprocessing/src/deepship_prep/` | |
-| 코드 | 토널 분석 (TPSW, 해석적 CFAR, 하모닉 콤 검증) | `/jhlee/UATR_SLM/deepship_repr/tonal_analysis.py` | analysis 폴더와 방법이 다름 |
-| 코드 | DEMON 구현 (합성 신호 검증 포함) | `/jhlee/ot-cfm/src/features/demon.py`, `/jhlee/PG-MCLDM/pg_mcldm/features/demon.py` | |
-| 코드 | FAD/KAD, 귀무 분포, 선박 bootstrap, 기억 게이트 | `/jhlee/ot-cfm/src/deepship_cfm/metrics.py`, `/jhlee/DGM/scripts/eval_gen.py` | PANNs 맹점 |
-| 코드 | 톤 보존 평가: peak-N 일치율 + 우연 바닥 | `/jhlee/deepship_analysis/.../scripts/tv_common.py` | |
-| 코드 | 스케일 불변 URN 지표 (prominence, peak ratio) | `/jhlee/ot-cfm/experiments/urn_protocol_eval.py` | |
-| 코드 | 물리 지표 (선밀도, 동적범위 등) | `/jhlee/DGM/scripts/physmetrics.py` | **LTAS 대역 버그 있음** |
-| 코드 | 정규모드 solver (Pekeris 대비 0.03%) | `/jhlee/PG-MCLDM/pg_mcldm/physics/modes.py` | 경험 보정 필요했음 |
-| 코드 | 생성 프레임워크 (CFM, SB-CFM, DDPM/DDIM, ReFlow, UNet) | `/jhlee/DGM/scripts/` | |
+| 메타데이터 | 609 파일 인벤토리(선박, AIS 거리, DC, 클리핑) | `/jhlee/UWShipNoise/data_analysis/deepship_analysis/deepship_analysis/file_manifest.csv` | ship_id는 휴리스틱 매칭, 잘린 선박명 있음 |
+| 메타데이터 | 녹음·세그먼트·조건 표 | `/jhlee/UWShipNoise/data_analysis/deepship_preprocessing/deepship_pipeline/{recordings,segments,conditions}.parquet` | 거리 보간 45%가 비정상해 |
+| 분할 | 누수 검사 포함 S0/S1/S2 (3 seed) | `/jhlee/UWShipNoise/recognition/UATR_SLM/data/splits/` | |
+| 분할 | 선박 분리 30 s | `/jhlee/UWShipNoise/data_analysis/deepship_preprocessing/deepship_pipeline/splits/ship_disjoint.json` | test Tug 2척 |
+| 분할 | 논문 분할 전사 (Xie2024 track, DEMONet Table 10) | `/jhlee/UWShipNoise/generation/ot-cfm/data/splits/xie2024_*.json`, `/jhlee/UWShipNoise/generation/PG-MCLDM/splits/deepship_table10.json` | 논문 분할 자체에 선박 누수 있음(59%, 74%) |
+| 코드 | 3계층 누수 검사, 그룹 분할 | `/jhlee/UWShipNoise/recognition/UATR_SLM/src/split.py` | |
+| 코드 | 정적 특징 82차원 + MLP 지름길 baseline | `/jhlee/UWShipNoise/recognition/UATR_SLM/src/diag_d1.py` | 모든 UATR 결과의 대조군 후보 |
+| 코드 | 분류기 (CQT/STFT/Mel + ResNet-18, TRTR/TSTR/few-shot) | `/jhlee/UWShipNoise/generation/PG-MCLDM/pg_mcldm/classifier/train.py` | G0 재현 미통과(72.2 vs 77.15) |
+| 코드 | DSP(FIR 데시메이션, sos HPF), TPSW/CFAR, CPA 기하 | `/jhlee/UWShipNoise/data_analysis/deepship_preprocessing/src/deepship_prep/` | |
+| 코드 | 토널 분석 (TPSW, 해석적 CFAR, 하모닉 콤 검증) | `/jhlee/UWShipNoise/recognition/UATR_SLM/deepship_repr/tonal_analysis.py` | analysis 폴더와 방법이 다름 |
+| 코드 | DEMON 구현 (합성 신호 검증 포함) | `/jhlee/UWShipNoise/generation/ot-cfm/src/features/demon.py`, `/jhlee/UWShipNoise/generation/PG-MCLDM/pg_mcldm/features/demon.py` | |
+| 코드 | FAD/KAD, 귀무 분포, 선박 bootstrap, 기억 게이트 | `/jhlee/UWShipNoise/generation/ot-cfm/src/deepship_cfm/metrics.py`, `/jhlee/UWShipNoise/generation/DGM/scripts/eval_gen.py` | PANNs 맹점 |
+| 코드 | 톤 보존 평가: peak-N 일치율 + 우연 바닥 | `/jhlee/UWShipNoise/data_analysis/deepship_analysis/.../scripts/tv_common.py` | |
+| 코드 | 스케일 불변 URN 지표 (prominence, peak ratio) | `/jhlee/UWShipNoise/generation/ot-cfm/experiments/urn_protocol_eval.py` | |
+| 코드 | 물리 지표 (선밀도, 동적범위 등) | `/jhlee/UWShipNoise/generation/DGM/scripts/physmetrics.py` | **LTAS 대역 버그 있음** |
+| 코드 | 정규모드 solver (Pekeris 대비 0.03%) | `/jhlee/UWShipNoise/generation/PG-MCLDM/pg_mcldm/physics/modes.py` | 경험 보정 필요했음 |
+| 코드 | 생성 프레임워크 (CFM, SB-CFM, DDPM/DDIM, ReFlow, UNet) | `/jhlee/UWShipNoise/generation/DGM/scripts/` | |
 | 캐시 | 학습된 체크포인트 | 각 폴더 `runs/`, `ckpt/` (총 수십 GB) | 분할이 폴더마다 다름 |
 
 ## 6. 이 아카이브의 다른 파일

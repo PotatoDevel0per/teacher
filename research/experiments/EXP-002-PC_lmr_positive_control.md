@@ -66,7 +66,7 @@ Table 9 test ID (DeepShip 파일명 `YYYYMMDD[a-z]-<ID>`의 `<ID>`):
 | 마지막 조각 | 30 s가 안 되는 끝부분은 버린다 | 원문 segment 수와 비교하기 위해 |
 
 **데이터 확인 (실행 전)**: 우리 segment 수를 원문 6742 / 1190 / 2547과 비교해 보고한다.
-- `/jhlee/data/deepship`은 Kaggle 미러(609 녹음)라서 원문 데이터와 다를 수 있다.
+- `/jhlee/UWShipNoise/data/deepship`은 Kaggle 미러(609 녹음)라서 원문 데이터와 다를 수 있다.
 - test 2547과 5% 넘게 차이 나면 학습 전에 보고한다.
 - Table 9 ID 중 우리 데이터에 없는 것도 보고한다.
 
@@ -125,7 +125,7 @@ Table 9 test ID (DeepShip 파일명 `YYYYMMDD[a-z]-<ID>`의 `<ID>`):
 
 ## 7. 결과물과 보고
 
-- 위치: `/jhlee/UATR_SLM/deepship_lmr_pc/runs/<arm>_seed<s>/`
+- 위치: `/jhlee/UWShipNoise/recognition/UATR_SLM/deepship_lmr_pc/runs/<arm>_seed<s>/`
 - 보고 (teacher 세션에 보낸다):
   1. 데이터 확인표: 학습 전에 먼저 보고한다
   2. 첫 run 소요 시간
@@ -144,7 +144,7 @@ Table 9 test ID (DeepShip 파일명 `YYYYMMDD[a-z]-<ID>`의 `<ID>`):
 
 ## 실행 중 발견·편차 기록
 
-- 2026-10-12 데이터 확인 (UATR_SLM_REPLAY 보고, `/jhlee/UATR_SLM/deepship_lmr_pc/DATA_CHECK.md`) → **게이트 통과**
+- 2026-10-12 데이터 확인 (UATR_SLM_REPLAY 보고, `/jhlee/UWShipNoise/recognition/UATR_SLM/deepship_lmr_pc/DATA_CHECK.md`) → **게이트 통과**
   - Table 9 ID 153개가 모두 우리 데이터에 있다. 누락 0, 중복 0.
   - test segment는 2547로 원문과 **정확히 일치**한다. train+val 7932도 원문 6742+1190과 일치한다. → 분할과 segment 규칙이 원문과 같다는 강한 근거다.
   - train/val 경계는 다르다(6500/1432 vs 6742/1190). 원문은 segment 단위 15%로 추정되고, 우리는 녹음 단위 15%(층화, seed 0)로 뗐다. **녹음 단위를 유지한다**(teacher 판단: 누수 방지가 우선, test에는 영향 없음).
@@ -164,7 +164,7 @@ Table 9 test ID (DeepShip 파일명 `YYYYMMDD[a-z]-<ID>`의 `<ID>`):
   - 참고: arm과 GPU가 1:1로 묶여 있다(B0=GPU0, B1=GPU1).
     - 같은 기종(A5000)이라 영향은 무시할 수준으로 본다(inferred).
     - 다만 GPU 간 수치 비결정성 차이가 arm 효과에 섞일 수 있다는 점은 기록해 둔다.
-- 2026-10-12 **결과 (UATR_SLM_REPLAY 보고, `/jhlee/UATR_SLM/deepship_lmr_pc/REPORT.md`)**
+- 2026-10-12 **결과 (UATR_SLM_REPLAY 보고, `/jhlee/UWShipNoise/recognition/UATR_SLM/deepship_lmr_pc/REPORT.md`)**
   - test 정확도, best-val 체크포인트
 
     | seed | B0 | B1 | Δ |

@@ -45,7 +45,7 @@
 
 ## EXP-LOFAR-001 재현 설계 (2026-10-12, LOFAR 세션, R1 결과를 보기 전에 작성)
 
-- 코드·산출물: `/jhlee/LOFAR/exp_lofar_001/` (`code/`, `data/`, `runs/<split>/<model>_<input>_s<seed>/`, `figs/`)
+- 코드·산출물: `/jhlee/UWShipNoise/recognition/LOFAR/exp_lofar_001/` (`code/`, `data/`, `runs/<split>/<model>_<input>_s<seed>/`, `figs/`)
 - 재현 표현: **"논문 방법을 재현함 (미기재 값은 직접 채움)"**. 채운 값은 아래 표와 `data/lofar_args.json`, 각 run의 `args.json`에 있다.
 
 ### 원문에서 새로 확인한 것 (`confirmed`)
@@ -69,7 +69,7 @@
 | 파일 선택 | Fig. 8의 두 녹음 포함 + ShipsEar passengers 30 전부 + 나머지는 seed 0 무작위 시작 후 1개씩 교체해 Table 1의 길이·이미지 수에 맞춤 | 결과: 파일 수와 이미지 수 4클래스 모두 일치, 길이 오차 ≤ 0.15% |
 | window | Hann, 14,940 샘플(0.467 s), hop 7,470 | "100"은 단위 모순. 50% overlap + 1분 = 256 프레임을 만족. Δf ≈ 2.14 Hz, Hann 분해능 ≈ 4 Hz → 15.2 Hz 간격 하모닉 분리. "100 ms"(Δf 10 Hz)는 13 Hz 하모닉 판독(Fig. 8a)과 맞지 않아 버림 |
 | 주파수 축 | 2–400 Hz 선형 256점에서 DFT 직접 계산 | 256 × 256을 재샘플 없이 만듦 |
-| ShipsEar 표본화 | 52,734 → 32,000 Hz (resample_poly) | 원문 fs 32 kHz. 원본 위치: `/jhlee/Underwater_Acoustic/LIG_Diffusion/Datasets/ShipSEAR/AUDIOS` |
+| ShipsEar 표본화 | 52,734 → 32,000 Hz (resample_poly) | 원문 fs 32 kHz. 원본 위치: `/jhlee/UWShipNoise/legacy/Underwater_Acoustic/LIG_Diffusion/Datasets/ShipSEAR/AUDIOS` |
 | 정규화 | TPSW (반폭 16 bin ≈ ±25 Hz, gap 2 bin, α = 2.0), 10log10(P/bg)를 [0, 10] dB로 잘라 0–255 | 원문 미기재. handoff 지시대로 TPSW |
 | 색 | green 채널만 사용 (Fig. 7의 검정–초록) | 그림 모양 |
 | 시간 축 | 위쪽이 최근 (Fig. 8 축 방향) | 그림 |
@@ -114,7 +114,7 @@
   - 원문의 1회 실행 결과(+3.56–5.70)도 이 잡음 안에 있을 수 있다.
 - 클래스별: CNN3의 HT 이득은 Tug에서 가장 크다(F1 0.76 → 0.84). Tug는 이미지당 Hough 선이 가장 많은 클래스다. 선 수 단서 가설은 아직 검증하지 않았다.
 - Passenger 출처별 recall: ShipsEar 0.73–1.0, DeepShip 0.39–0.75. ShipsEar 조각이 훨씬 쉽다. 데이터셋 지름길 가능성과 맞는다.
-- 상세: `/jhlee/LOFAR/exp_lofar_001/runs/summary_image.md`
+- 상세: `/jhlee/UWShipNoise/recognition/LOFAR/exp_lofar_001/runs/summary_image.md`
 - 다음: R2a(녹음), R2b(선박)를 같은 설정으로 실행 중 (2026-10-12 시작, 약 8시간 예상)
 
 ### 사후 보조 분석 (teacher 승인, 2026-10-12) — 주 판정에는 쓰지 않음

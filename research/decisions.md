@@ -127,3 +127,24 @@
 - 재검토 조건:
   - EXP-003-LDM 단계 0에서 실데이터 DEMON 특징이 잡음과 구별되지 않을 때 → DEMON 실데이터 단계 재개를 검토
   - 단계 5에서 A-gen arm이 필요할 때 → EXP-002 재개
+
+## D-2026-10-14-02: 실험 폴더를 /jhlee/UWShipNoise로 통합하고 362 GB 정리
+
+- 날짜: 2026-10-14
+- 결정 내용:
+  - 선박 소음 관련 실험 폴더 10개와 선박 데이터 4개를 `/jhlee/UWShipNoise/{recognition,features,generation,data_analysis,legacy,data}/`로 옮긴다.
+  - teacher는 제자리에 둔다.
+  - 캐시(A), 이전 실험의 체크포인트·생성물(B), 쓰지 않는 UniqueShip 12class_5h(C)를 삭제한다. json·로그·설정·코드·그림은 남긴다.
+- 결정 배경: 디스크 사용률 99%(남은 공간 75 GB). 사용자가 디렉토리 정리를 요청했다.
+- 고려한 대안:
+  - 옛 위치에 심볼릭 링크를 남김 → 사용자가 경로 일괄 치환을 선택했다.
+  - teacher도 옮김 → 사용자가 제자리에 두기로 했다.
+- 근거: B의 실험은 D-2026-09-30-01에 따라 `hypothesis` 등급이다. 결과 json이 남으므로 teacher 기록의 출처는 유지된다.
+- 현재 상태:
+  - 이동과 삭제 완료. 남은 공간 454 GB(사용률 94%).
+  - 옛 절대경로 치환 완료: 808개 파일, 약 34만 건. 원본 백업은 `.migration_2026-10-14/backup/`(62 MB)에 있다. 사용자가 직접 실행했다.
+  - `urn` editable `.pth`를 새 경로로 수정했고, `import urn`이 동작함을 확인했다.
+  - 절대 심볼릭 링크 10개를 재지정했다. 그중 4개는 정리(A)로 대상이 삭제되어 끊긴 채 남아 있다. 예: `Underwater_Acoustic/datasplit/asdcgan/*.npy`, `LIG_GM/Datasets`(이동 전부터 끊겨 있었음).
+  - Claude 세션 기억 폴더 9개의 이름을 새 경로에 맞췄다. 예: `~/.claude/projects/-jhlee-DEMON` → `-jhlee-UWShipNoise-features-DEMON`.
+  - 목록: `/jhlee/UWShipNoise/.migration_2026-10-14/`
+- 재검토 조건: 이전 실험(PG-MCLDM 등)을 재평가해야 하면 재학습이 필요하다. UniqueShip 12class를 쓰게 되면 다시 받는다.

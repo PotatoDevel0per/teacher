@@ -24,7 +24,7 @@
 
 | 항목 | 값 |
 |---|---|
-| 데이터 | `/jhlee/data/uniqueship/5class_balanced/stage/main5_balanced/`, 공식 `fold_1..5` CSV |
+| 데이터 | `/jhlee/UWShipNoise/data/uniqueship/5class_balanced/stage/main5_balanced/`, 공식 `fold_1..5` CSV |
 | 분할 | 공식 MMSI 5-fold. train/val/test 그대로 사용 |
 | 분류기 | SwinV2-Tiny (ImageNet 사전학습) + 2층 헤드 |
 | 입력 | 16 kHz, 5 s, Mel (1024 window, 100% zero-pad, 75% overlap), 90 dB 동적범위(클립별 최댓값 기준), 256×256×3 |
@@ -105,8 +105,8 @@ fold별 **paired 차이** Δ_k = F1(arm, fold k) − F1(A0, fold k), k = 1..5
 
 ## 8. 결과물
 
-- `/jhlee/UATR_SLM/uniqueship_clf/runs/uniqueship_aug_<arm>_fold<k>/`
-- 비교표 `/jhlee/UATR_SLM/uniqueship_clf/EXP002_COMPARE.md`: §7 표, 클래스별 Δ, best epoch, 소요 시간
+- `/jhlee/UWShipNoise/recognition/UATR_SLM/uniqueship_clf/runs/uniqueship_aug_<arm>_fold<k>/`
+- 비교표 `/jhlee/UWShipNoise/recognition/UATR_SLM/uniqueship_clf/EXP002_COMPARE.md`: §7 표, 클래스별 Δ, best epoch, 소요 시간
 - teacher 세션에 보고: §7 표, 판정, 편차 기록(지시서와 다르게 한 모든 것)
 
 ## 9. 이 실험이 답하지 않는 것

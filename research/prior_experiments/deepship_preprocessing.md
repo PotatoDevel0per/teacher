@@ -1,6 +1,6 @@
 # deepship_preprocessing — 조건부 생성용 9-stage 전처리 파이프라인
 
-- 경로: `/jhlee/deepship_preprocessing` (29 GB, git 없음)
+- 경로: `/jhlee/UWShipNoise/data_analysis/deepship_preprocessing` (29 GB, git 없음)
 - 기간: 2026-09-08(코드) ~ 09-09(산출물·실험). `DECISIONS.md` "복원 방식 확정 (2026-09-09)"
 - config sha256 c66591420b44…, seed 20260908, python 3.11.9 / scipy 1.17.1 / librosa 0.11.0 `[확인]`
 - 전체 상태: `hypothesis`. 표기 규칙은 [README.md](README.md) §0.

@@ -13,7 +13,7 @@
 | 2026_wang_noise_robust_demon | EEMD 적응 대역 선택 + 3차 누적량 + SBL로 잡음에 강한 DEMON 스펙트럼 추출 | `papers/pdf/2026_wang_noise_robust_demon.pdf` | 전체 읽음 (2026-10-12 조건부 확정, 출력은 스펙트럼뿐·f_s/N 추정 없음) | DEMON, 대역 자동 선택, 축 주파수 | `papers/notes/2026_wang_noise_robust_demon.md` |
 | 2024_cho_lofar_hough_cnn | Hough 수평선 검출 + CNN 분류 (한국음향학회지 43(1)) | `papers/pdf/2024_cho_lofar_hough_cnn.pdf` | 핵심 절 원문 대조 | LOFAR, tonal, Hough | `papers/notes/2024_cho_lofar_hough_cnn.md` |
 | 2020_han_deeplofargram | DeepLofargram: 약하고 흔들리는 tonal 선을 LOFARgram에서 검출·복원 (JASA 148(4)) | 미확보 (arXiv 1912.00605) | 서지만 (LOFAR 연구 잠정 선정 2026-10-12) | LOFAR, tonal 검출 | — |
-| 2024_xie_demonet | DEMONet: multi-expert UATR + cross-temporal VAE | `/jhlee/ot-cfm/docs/DEMONet.pdf` | 부분 읽음 | DEMON, UATR, 분할 | `papers/notes/2024_xie_demonet.md` |
+| 2024_xie_demonet | DEMONet: multi-expert UATR + cross-temporal VAE | `/jhlee/UWShipNoise/generation/ot-cfm/docs/DEMONet.pdf` | 부분 읽음 | DEMON, UATR, 분할 | `papers/notes/2024_xie_demonet.md` |
 
 ## 찾는 중
 

@@ -1,6 +1,6 @@
 # DGM — 8 kHz·4 s 스펙트로그램 생성, 프레임워크 6종 비교 ("라운드 1")
 
-- 경로: `/jhlee/DGM` (31 GB, git 없음)
+- 경로: `/jhlee/UWShipNoise/generation/DGM` (31 GB, git 없음)
 - 기간: 2026-08-19 ~ 09-01. 보고서 `docs/01_EXPERIMENT_REPORT.md`는 08-29에 작성됐고, 그 뒤의 band50 최종 평가와 lf2k 결과는 반영되지 않았다.
 - 이름: DGM의 정의는 어디에도 없다. Deep Generative Model(s)로 추정한다 `[추론]`.
 - 전체 상태: `hypothesis`. 표기 규칙은 [README.md](README.md) §0.
@@ -11,7 +11,7 @@ DeepShip 4클래스를 조건으로 8 kHz·4 s STFT dB 스펙트로그램을 생
 
 ## 2. 데이터
 
-- 원천: `/jhlee/Underwater_Acoustic/Datasets/deepship`의 32 kHz 30 s 세그먼트 5,378개. **다른 폴더와 원천 경로가 다르다.**
+- 원천: `/jhlee/UWShipNoise/legacy/Underwater_Acoustic/Datasets/deepship`의 32 kHz 30 s 세그먼트 5,378개. **다른 폴더와 원천 경로가 다르다.**
 - 8 kHz로 리샘플하고 4 s 비중첩 조각 7개로 잘랐다 → 37,646개, `wav8k.npy` 4.8 GB `[확인]` (`scripts/build_wav8k.py`)
 - 표현 A: STFT n_fft 1024 / hop 256, 20log10|S|를 [−120, 25] dB로 clip, 모델 입력 512×128. A0는 전역 정규화, A1은 per-bin whitening. 복소 표현 B는 코드만 있다.
 - 분할 split4 `[확인]` (`cache/chunks.csv`): train 23,198 / train_dev 3,164 / dev 5,642 / test 5,642.

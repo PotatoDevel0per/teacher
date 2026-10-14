@@ -5,7 +5,7 @@ year: 2024
 venue: "arXiv preprint (arXiv:2411.02758v1)"
 doi: ""
 official_url: "https://arxiv.org/abs/2411.02758"
-pdf_path: "/jhlee/ot-cfm/docs/DEMONet.pdf"
+pdf_path: "/jhlee/UWShipNoise/generation/ot-cfm/docs/DEMONet.pdf"
 code_url: ""
 datasets: [DeepShip, ShipsEar, proprietary]
 topics:

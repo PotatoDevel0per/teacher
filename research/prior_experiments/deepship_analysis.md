@@ -1,6 +1,6 @@
 # deepship_analysis — DeepShip 원본 분석과 보코더 왕복 검증
 
-- 경로: `/jhlee/deepship_analysis` (962 MB, git 없음)
+- 경로: `/jhlee/UWShipNoise/data_analysis/deepship_analysis` (962 MB, git 없음)
 - 기간: 2026-09-04 ~ 09-09. 요청서는 `docs/deepship_analysis_prompt.md`다.
 - 성격: 데이터 특성 분석. 분류·생성 학습은 하지 않았다(HiFi-GAN fine-tune만 예외).
 - 전체 상태: `hypothesis`. 핵심 수치는 Claude가 계산했고 교차 재현이 없다. 표기 규칙은 [README.md](README.md) §0.
@@ -12,7 +12,7 @@
 - 고유 ship_id 244척(문헌 265), 미매칭 10개. 클래스별 선박 수: Cargo 62, Passenger 43, Tanker 123, Tug 16
 - AIS 거리 가용 571개
 - **DC 파워 비율 중앙값 0.968.** 474개 파일에서 DC가 파워의 90%를 넘는다. DC를 제거하지 않으면 분석 결과가 아티팩트가 된다.
-- ship_id는 날짜·시각 휴리스틱 매칭이다(`/jhlee/data/deepship/ship_id.csv`, 출처 불명). "QUEEN OF"(35 녹음)처럼 잘린 선박명이 있다.
+- ship_id는 날짜·시각 휴리스틱 매칭이다(`/jhlee/UWShipNoise/data/deepship/ship_id.csv`, 출처 불명). "QUEEN OF"(35 녹음)처럼 잘린 선박명이 있다.
 
 ## 2. 분석 목록 `[문서]`
 

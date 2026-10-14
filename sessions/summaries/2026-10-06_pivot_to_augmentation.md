@@ -2,7 +2,7 @@
 
 - 날짜: 2026-10-02 ~ 2026-10-06
 - 세션 주제: 연구 목표 전환(WAV 생성 → 물리 기반 증강), UniqueShip 확보, DEMON/LOFAR 개념 학습
-- 관련 프로젝트: `/jhlee/UATR_SLM` (다른 세션 `UATR_SLM_REPLAY`), `/jhlee/data/uniqueship`
+- 관련 프로젝트: `/jhlee/UWShipNoise/recognition/UATR_SLM` (다른 세션 `UATR_SLM_REPLAY`), `/jhlee/UWShipNoise/data/uniqueship`
 
 ## 확정한 내용
 

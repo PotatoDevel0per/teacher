@@ -1,6 +1,6 @@
 # PG-MCLDM — 물리 조건 latent 생성 + 증강 검증 (중단 상태)
 
-- 경로: `/jhlee/PG-MCLDM` (89 GB, `.git`은 있으나 커밋 0)
+- 경로: `/jhlee/UWShipNoise/generation/PG-MCLDM` (89 GB, `.git`은 있으나 커밋 0)
 - 기간: 2026-09-28 ~ 09-30 (약 2일). 사용자 요청으로 중단(pause)됐다 `[문서: CLAUDE.md]`.
 - 이름: **Physics-Guided Multi-Condition Latent Diffusion Model**. 실제 생성기는 diffusion이 아니라 OT-CFM이다(DDPM-v는 ablation). **PINN은 학습됐지만 하류에 쓰이지 않았다** `[문서: docs/PROGRESS.md 09-30 정정]`.
 - 전체 상태: `hypothesis`. 표기 규칙은 [README.md](README.md) §0.
@@ -11,13 +11,13 @@ DeepShip 30 s WAV를 물리 조건(축 주파수, 날개 수, DEMON, 토널, 캐
 
 ## 2. 데이터
 
-- `/jhlee/data/deepship`, 16 kHz, 10 Hz HPF (`cache/audio16k` 11 GB)
+- `/jhlee/UWShipNoise/data/deepship`, 16 kHz, 10 Hz HPF (`cache/audio16k` 11 GB)
 - **분할: DEMONet(arXiv 2411.02758) Table 10 recording-disjoint**. test ID는 하드코딩돼 있다 `[확인]` (`scripts/make_deepship_table10_split.py`).
   - 녹음 수 train 387 / val 69 / test 153. 세그먼트는 30 s 창·15 s hop으로 6,785 / 1,213 / 2,575
   - **test 녹음의 73.9%, val의 62%가 train과 같은 선박** `[확인]`. 문서는 "미관측 선박 일반화가 아님"이라고 명시했다.
 - 생성 표현: 2-stream STFT(deepship_preprocessing 방식), GL 128 + 공동 32, random 초기화
 - 분류기 입력: 근사 CQT(STFT에 constant-Q 삼각 커널) 290×1190
-- CPA 거리 궤적은 `/jhlee/deepship_preprocessing/.../conditions.parquet`에서 가져왔다.
+- CPA 거리 궤적은 `/jhlee/UWShipNoise/data_analysis/deepship_preprocessing/.../conditions.parquet`에서 가져왔다.
 
 ## 3. 방법 파이프라인 `[확인]`
 
