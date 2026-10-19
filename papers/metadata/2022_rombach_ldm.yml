@@ -1,0 +1,20 @@
+paper_id: 2022_rombach_ldm
+title: "High-Resolution Image Synthesis with Latent Diffusion Models"
+authors: [Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, Björn Ommer]
+year: 2022
+venue: "CVPR 2022"
+doi: ""
+official_url: "https://arxiv.org/abs/2112.10752"
+pdf_path: "papers/pdf/2022_rombach_ldm.pdf"   # arXiv v2, 45 pages, downloaded 2026-10-14
+code_url: "https://github.com/CompVis/latent-diffusion"
+datasets: [ImageNet, CelebA-HQ, FFHQ, LSUN, LAION, OpenImages]
+topics: [latent_diffusion, autoencoder, conditioning, cross_attention]
+status: read_key_sections   # §3.1-3.3, §4.1, App. D.1, G checked against PDF (Claude). User studied the paper independently.
+evidence_level: original_pdf
+reproduction_status: not_started
+relevance_to_user:
+  - "Base method for EXP-003-LDM (conditional LDM augmentation)"
+limitations:
+  - "Image domain only. AE perceptual loss is LPIPS (ImageNet VGG) -> not valid for spectrograms as is"
+  - "Objective is eps-prediction (Eq. 2). Our plan uses v-prediction -> a modification, not a reproduction"
+  - "Classifier-free guidance is used in experiments but is cited from [32], not proposed here"

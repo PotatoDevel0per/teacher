@@ -14,6 +14,7 @@
 | 2024_cho_lofar_hough_cnn | Hough 수평선 검출 + CNN 분류 (한국음향학회지 43(1)) | `papers/pdf/2024_cho_lofar_hough_cnn.pdf` | 핵심 절 원문 대조 | LOFAR, tonal, Hough | `papers/notes/2024_cho_lofar_hough_cnn.md` |
 | 2020_han_deeplofargram | DeepLofargram: 약하고 흔들리는 tonal 선을 LOFARgram에서 검출·복원 (JASA 148(4)) | 미확보 (arXiv 1912.00605) | 서지만 (LOFAR 연구 잠정 선정 2026-10-12) | LOFAR, tonal 검출 | — |
 | 2024_xie_demonet | DEMONet: multi-expert UATR + cross-temporal VAE | `/jhlee/UWShipNoise/generation/ot-cfm/docs/DEMONet.pdf` | 부분 읽음 | DEMON, UATR, 분할 | `papers/notes/2024_xie_demonet.md` |
+| 2022_rombach_ldm | LDM: AE 고정 후 latent에서 diffusion, cross-attention 조건화 (CVPR 2022) | `papers/pdf/2022_rombach_ldm.pdf` | 핵심 절 원문 대조 (§3, §4.1, 부록 D.1·G) | 생성, LDM, EXP-003 | `papers/notes/2022_rombach_ldm.md` |
 
 ## 찾는 중
 

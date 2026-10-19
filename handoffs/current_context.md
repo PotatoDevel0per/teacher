@@ -92,3 +92,10 @@ WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 
   - 물리 손실(Phase 3)은 기각됐다.
   - 증강 이득은 +0.66 pp로 유의하지 않았다(seed 1개, 선박 누수 분할).
   - 따라서 AE 복원본의 tonal·DEMON 보존을 첫 게이트로 둔다.
+
+## 2026-10-19 갱신
+
+- 학위논문 주 방법 = 증강용 생성 모델 (D-2026-10-19-01). 판정은 선박 분리 UATR.
+- 실험 저장소: `/jhlee/UWShipNoise/thesis` (git, core/ 공유 코드 + exp/). 세션: CLS(분류·판정), GEN(AE·LDM, E1-rep 이후).
+- 진행: EXP-E1-rep 승인. 지시서 `handoffs/2026-10-19_to_CLS_E1-rep.md`. CLS 세션 개설 대기.
+- 일정 초안: `research/thesis_timeline_draft.md` (약 33주, 2027-06 중순).

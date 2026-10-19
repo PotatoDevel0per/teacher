@@ -50,8 +50,8 @@
 
 | ID | 반영 위치 | 가설 | 근거 등급 | 상태 |
 |---|---|---|---|---|
-| H-LDM-1 | 오토인코더 손실 | AE 학습에 LOFAR(tonal)·DEMON(포락선) 복원 손실을 더하면, latent가 협대역·광대역 구조를 더 잘 보존한다 | 합리적 가설. LDM 원문의 AE는 perceptual + adversarial 손실이다(원문 미확인). 수중음향 근거 없음 | hypothesis |
-| H-LDM-2 | 조건 입력 | DEMON·LOFAR 요약 벡터를 ε_θ(z_t, t, c)의 조건 c로 넣으면(cross-attention 또는 FiLM), 생성물의 해당 특징이 조건을 따른다(제어 가능성) | LDM의 조건화 구조를 그대로 쓰는 것이다(원문 §3.3, 미확인). 목적함수 변경이 필요 없다 | hypothesis |
+| H-LDM-1 | 오토인코더 손실 | AE 학습에 LOFAR(tonal)·DEMON(포락선) 복원 손실을 더하면, latent가 협대역·광대역 구조를 더 잘 보존한다 | 합리적 가설. LDM 원문의 AE는 LPIPS + patch adversarial + 약한 KL/VQ 손실이다(원문 §3.1·부록 G 확인). 수중음향 근거 없음 | hypothesis |
+| H-LDM-2 | 조건 입력 | DEMON·LOFAR 요약 벡터를 ε_θ(z_t, t, c)의 조건 c로 넣으면(cross-attention 또는 FiLM), 생성물의 해당 특징이 조건을 따른다(제어 가능성) | LDM의 cross-attention 조건화를 쓰는 것이다(원문 §3.3 확인). FiLM은 원문에 없다(인접 근거). 목적함수 변경이 필요 없다 | hypothesis |
 | H-LDM-3 | 학습 보조 손실 | x̂₀를 디코딩해 DEMON·LOFAR를 계산하고 목표와 맞추는 보조 손실을 더하면 H-LDM-2보다 조건 준수가 좋아진다 | 구현 휴리스틱. 디코더와 특징 추출의 미분 가능성이 필요하다. 비용과 불안정성 위험이 있다 | hypothesis |
 | H-LDM-4 | 샘플링 guidance | 학습은 바꾸지 않는다. 샘플링 때 특징 거리의 gradient로 z_t를 유도한다(classifier/universal guidance 계열) | 인접 분야 근거. 원문 미확인 | hypothesis |
 
