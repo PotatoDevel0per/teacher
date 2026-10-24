@@ -41,6 +41,13 @@
 
 E1-AE 3 fold 중간 관찰(F1 비율, 기준 0.95): DeepShip MEL 0.946(경계), STFT 0.556, CQT 0.804(tonal 보존 0.97). ShipsEar는 세 도메인 모두 0.98–1.02.
 
+## 3-1. 정전 직전 확인 (10:05 UTC)
+
+- CLS: 커밋 완료(c0a2dd9), 프로세스 0개.
+- DEN: 커밋 완료(6e46370), GPU 사용 없음.
+- GEN: 큐 STOP 설정됨. fold4 진행분(ShipsEar STFT·CQT fold4 완료, DeepShip MEL·STFT fold4 학습 중)은 GEN 커밋 대기. 완료 AE는 약 21개.
+- Teacher 저장소: 커밋·push 완료(c4ae2d1 이후).
+
 ## 4. 사용자 결정 대기
 
 1. **E1-AE 진행 방식:** Teacher 추천 B(30개 완주 + GEN이 patch adversarial 손실 버전을 CPU로 준비)
