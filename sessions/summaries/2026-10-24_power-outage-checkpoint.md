@@ -45,7 +45,7 @@ E1-AE 3 fold 중간 관찰(F1 비율, 기준 0.95): DeepShip MEL 0.946(경계), 
 
 - CLS: 커밋 완료(c0a2dd9), 프로세스 0개.
 - DEN: 커밋 완료(6e46370), GPU 사용 없음.
-- GEN: 커밋 완료(d7f98fd), 큐 STOP(10:04 UTC). **완료 AE 21/30.** 학습 중이던 DeepShip MEL fold4(14k/20k, GPU1), DeepShip STFT fold4(7k/20k, GPU0)는 정전 시 처음부터 다시(이어 학습 미지원). 재개 절차는 GEN REPORT §0: eval json 없는 작업의 claim과 결과 디렉터리 삭제 → claims/STOP 삭제 → run_e1ae_pool.sh 0·1. 남은 8–9개, GPU 2장 약 16 h. ShipsEar fold4 중간 r: MEL 0.895, STFT 0.986, CQT 0.885.
+- GEN: 커밋 완료(d7f98fd), 큐 STOP(10:04 UTC). **완료 AE 22/30**(11:27 UTC DS MEL fold4 완료, r 0.849, GEN 3488e20; DS MEL 4 fold 평균 0.922). 학습 중이던 DeepShip MEL fold4(14k/20k, GPU1), DeepShip STFT fold4(7k/20k, GPU0)는 정전 시 처음부터 다시(이어 학습 미지원). 재개 절차는 GEN REPORT §0: eval json 없는 작업의 claim과 결과 디렉터리 삭제 → claims/STOP 삭제 → run_e1ae_pool.sh 0·1. 남은 8–9개, GPU 2장 약 16 h. ShipsEar fold4 중간 r: MEL 0.895, STFT 0.986, CQT 0.885.
 - Teacher 저장소: 커밋·push 완료(c4ae2d1 이후).
 
 ## 4. 사용자 결정 대기
