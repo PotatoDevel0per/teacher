@@ -10,5 +10,8 @@
 | STFT/FFT 분석 구간 | **window** | 창, 창 길이 → window length |
 | 협대역 | **narrow** (예: narrow band) | 협대역 |
 | 광대역 | **broad** (예: broadband) | 광대역 |
+| 가까운 두 tonal이 만드는 차주파수 진폭 출렁임 | **beating** (2026-10-20 추가) | 맥놀이 |
+| 녹음 단위로만 나눈 분할(같은 선박의 다른 녹음은 train·test에 걸칠 수 있음) | **Rec-disjoint** (2026-10-20 추가) | 누출 분할, recrand |
+| 선박 단위로 나눈 분할 | **Ships-disjoint** (2026-10-20 추가) | 선박 분리 분할, shipcv |
 
 - 기존 문서를 수정할 때도 이 표기로 바꾼다.

@@ -15,6 +15,7 @@
 | 2020_han_deeplofargram | DeepLofargram: 약하고 흔들리는 tonal 선을 LOFARgram에서 검출·복원 (JASA 148(4)) | 미확보 (arXiv 1912.00605) | 서지만 (LOFAR 연구 잠정 선정 2026-10-12) | LOFAR, tonal 검출 | — |
 | 2024_xie_demonet | DEMONet: multi-expert UATR + cross-temporal VAE | `/jhlee/UWShipNoise/generation/ot-cfm/docs/DEMONet.pdf` | 부분 읽음 | DEMON, UATR, 분할 | `papers/notes/2024_xie_demonet.md` |
 | 2022_rombach_ldm | LDM: AE 고정 후 latent에서 diffusion, cross-attention 조건화 (CVPR 2022) | `papers/pdf/2022_rombach_ldm.pdf` | 핵심 절 원문 대조 (§3, §4.1, 부록 D.1·G) | 생성, LDM, EXP-003 | `papers/notes/2022_rombach_ldm.md` |
+| 2026_gu_focusmn_denoising | FocuS-MN: 크기 마스크 + FSMN 잡음 제거, ShipsEar 합성 혼합(−5 dB) (JMSE 14:621) | `papers/pdf/2026_gu_focusmn_denoising.pdf` | 핵심 절 원문 대조 | 잡음 제거, H-PRE-4, A-phys | `papers/notes/2026_gu_focusmn_denoising.md` |
 
 ## 찾는 중
 

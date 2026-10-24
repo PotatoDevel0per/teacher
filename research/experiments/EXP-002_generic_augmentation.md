@@ -164,3 +164,9 @@ fold별 **paired 차이** Δ_k = F1(arm, fold k) − F1(A0, fold k), k = 1..5
   - 표현: "fold 안에서 초기화와 데이터 순서를 맞춘 대응 비교"(학습 경로가 완전히 같은 것은 아니다)
 - **결정 (2026-10-12, 사용자)**: EXP-002를 재개하기 전에 양성 대조군 EXP-002-PC(a)를 먼저 실행한다. 지시서: `research/experiments/EXP-002-PC_lmr_positive_control.md`
   - 같은 이유로 A1을 "CutMix(Beta(1,1)) 근사"에서 **원문 기술 그대로의 LMR**(a~U, b~U 독립, 1 패치, batch당 50%)로 바꾼다. 대조군이 검증한 모듈과 같은 모듈을 쓰기 위해서다. A1 실행 전 변경이다.
+
+## 미해결: A4 파형 증강 입력 분포 의심 (2026-10-19, CLS 세션 발견, 미검증)
+
+- 발견: UniqueShip int16 파형 캐시(`uniqueship_ds/cache/uniqueship_wave16k.i16`)로 Mel을 만들면 기존 Mel 캐시와 클립당 최대 0.46(0–1 척도)까지 어긋난다. 조용한 클립(rms 약 3e-4)에서는 int16 양자화 잡음이 90 dB 범위 안으로 들어와 고주파 band를 채운다.
+- 영향(`hypothesis`): A4(파형 증강)가 이 캐시를 썼다면 A0과 입력 분포가 다르다. 그러면 A4의 Δ에 증강 효과와 양자화 효과가 섞인다. args에 기록된 "2.44e-04 일치"와 맞지 않으므로 확인이 필요하다.
+- 조치: EXP-002 재개 시 A4는 float 원본 WAV에서 다시 만든다. thesis `core/`는 int16 캐시를 쓰지 않는다.

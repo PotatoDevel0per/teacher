@@ -97,5 +97,13 @@ WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 
 
 - 학위논문 주 방법 = 증강용 생성 모델 (D-2026-10-19-01). 판정은 선박 분리 UATR.
 - 실험 저장소: `/jhlee/UWShipNoise/thesis` (git, core/ 공유 코드 + exp/). 세션: CLS(분류·판정), GEN(AE·LDM, E1-rep 이후).
-- 진행: EXP-E1-rep 승인. 지시서 `handoffs/2026-10-19_to_CLS_E1-rep.md`. CLS 세션 개설 대기.
+- 주 데이터: DeepShip·ShipsEar(선박 단위 5-fold 새로 고정). UniqueShip은 보조(회귀 확인, 최종 보조 일반화) (D-2026-10-19-02).
+- 진행: EXP-E1-rep v2 실행 중(CLS). 지시서 `handoffs/2026-10-19_to_CLS_E1-rep_v2.md`.
 - 일정 초안: `research/thesis_timeline_draft.md` (약 33주, 2027-06 중순).
+
+## 2026-10-24 정전 전 체크포인트
+
+- **재개할 때 먼저 읽을 것:** `sessions/summaries/2026-10-24_power-outage-checkpoint.md`
+- 진행 중: E1-AE 19/30 (GEN, fold4·5 남음). 정전 전 큐 STOP.
+- 끝난 핵심 결과: FocuS-MN ShipsEar 재현 통과(SDRi 8.68). 그 모델을 DeepShip 분류 앞단에 쓰면 해로움(−4.83 pp). R2c 퇴화 원인은 결합형 L2. UniqueShip 잡음 제거기(R-US) SDRi 8.46, tonal 보존.
+- 사용자 결정 대기: E1-AE 진행 방식(B 추천), R-US 다음 단계(A/B/C), E1-src 캐시 삭제, 세미나 슬라이드.
