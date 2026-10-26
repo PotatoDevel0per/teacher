@@ -31,7 +31,7 @@
 
 ## 1부. 기존 UATR 분류 연구의 분할 누출 (3장, 5분)
 
-### S3. UATR-SLM(ICASSP 2026) 재현: 분할만 바꾸기 [이전 세션]
+### S3. UATR-SLM(ICASSP 2026) 재현: 분할만 바꾸기 [이전 세션, 결과 그대로 사용(사용자 결정 2026-10-26)]
 - 실험: 분류기는 UATR-SLM 하나로 고정하고 분할 방식만 바꿈. 2 데이터셋 × 4 분할 × seed 3 = 24 run
 - 표(macro-F1, 평균 ± sd):
 
@@ -86,7 +86,7 @@
 
 - 판정: 증강 이득 Δ는 재현됨. 기준(≥ 2 pp)을 0.34 pp 차이로 넘었다. baseline 절대값(74.68)은 재현하지 못함.
 - 주의: last epoch 기준이면 Δ가 −7.1 pp로 뒤집힌다. 체크포인트 선택 규칙에 따라 결론이 바뀐다.
-- 선박 단위 분할 비교는 하지 않았다(계획했던 (b)안은 종료). 슬라이드에 "미측정"으로 표시한다.
+- 선박 단위 분할 비교: 사용자 결정(2026-10-26) "자원이 빌 때 학습"으로 추가 예정. 결과가 없으면 "미측정"으로 표시한다.
 
 ### S7. LOFAR + Hough 증강 재현 (EXP-LOFAR-001, Cho & Ha 2024) [Teacher 검증]
 - 실험: DeepShip 4클래스 + ShipsEar Passenger, 분할 4종(무작위 / 녹음 / DEMONet / 선박) × 모델 3종 × 원본·HT
@@ -169,9 +169,10 @@
 - 부수 발견: 결합형 L2(Adam weight decay)가 약 7k step 뒤 가중치를 무너뜨림 → AdamW로 해결
 
 ### S15. DeepShip에 적용하면 잘 안 된다 (R2b, R3-DS) [Teacher 검증]
-- 그림: 잡음 제거 비교 페이지 그림(`scratchpad/denpage/den_methods.png`). 같은 DeepShip 클립의 방법별 MEL과 LTAS. 시도 2b는 2–8 kHz를 거의 지운다.
+- 그림: `research/figures/seminar_S15_den_methods_deepship.png`. 같은 DeepShip 클립의 방법별 MEL과 LTAS. 시도 2b는 2–8 kHz를 거의 지운다.
 - 잡음 제거 성능: DeepShip 혼합 SDRi 5.86 dB(기준 6.9 미달). 실녹음 에너지 87% 제거, 2–4 kHz −16 dB, 4–8 kHz −19 dB
 - 분류 앞단(5 fold): **F1 58.18 → 53.35(−4.83, 4/5 fold 음수)**
+- **2026-10-26 발견: DeepShip 클립 에너지의 98%가 DC였고, 잡음 제거기에 DC를 빼지 않고 넣었다.** DC를 빼면 ShipsEar 모델의 DeepShip 혼합 SDRi는 7.07(통과). DC를 뺀 입력으로 분류 5 fold를 다시 하는 중(R3-DS-DC) → 발표 전 결과로 이 슬라이드를 고친다
 - 교훈: fold1만 봤을 때는 +7.24였다(큰 선박 두 척의 효과). fold 하나는 방향까지 틀릴 수 있다.
 - 연결: 3부에서 클래스 정보는 broadband에 있었다. broadband를 지우면 해롭다는 결과와 일관된다.
 
@@ -182,12 +183,23 @@
 - 한계: 선박 소리도 78.6% 지움(배경 87.5%)
 - 누출 주의: 학습 선박이 DeepShip과 140척 겹친다(DeepShip 클립의 71%). DeepShip 분류에는 기간 분리 재학습(R-US-T)이 필요하다.
 
-### S17. R-US 잡음 제거 결과를 세 데이터셋에서 비교 [그림 제작 필요]
-- 그림 구성: 행 = 데이터셋, 열 = 원본 / ShipsEar 모델(시도 2b) / R-US 모델 / LTAS
-  - UniqueShip fold1 test 선박 클립
-  - DeepShip 클립: 시각화만 한다. R-US 학습 선박과 겹칠 수 있어 성능 근거로 쓰지 않는다.
-  - ShipsEar 클립
-- 보조 숫자: 데이터셋별 지운 에너지, tonal 수 변화
+### S17. R-US 잡음 제거 결과를 세 데이터셋에서 비교 [그림 완성: `research/figures/seminar_S17_rus_3datasets.png`]
+- 구성: 행 = UniqueShip cargo(fold1 test) / DeepShip Cargo(R-US 학습 선박과 겹치지 않는 SPRING QUEEN) / ShipsEar tugboat(두 모델 모두 학습에 없음) / UniqueShip background. 열 = 원본(DC 제거) / ShipsEar 모델(시도 2b) / R-US / LTAS
+- 클립 선택 규칙(미리 고정): 후보 풀에서 seed 0으로 20개를 뽑아 원본 tonal 수가 중앙값인 클립
+- 숫자(지운 에너지, tonal 수 원본 → ShipsEar 모델 → R-US):
+
+| 클립 | ShipsEar 모델 | R-US |
+|---|---|---|
+| UniqueShip cargo | −5%, 11 → 8 | 90%, 11 → 13 |
+| DeepShip Cargo | 38%, 10 → 7 | 69%, 10 → 10 |
+| ShipsEar tug | 78%, 20 → 17 | 91%, 20 → 18 |
+| UniqueShip 배경 | 91%, 9 → 6 | 88%, 9 → 9 |
+
+- 읽는 법:
+  - ShipsEar 모델은 데이터셋과 관계없이 2–8 kHz를 크게 깎는다(LTAS의 파란 선).
+  - R-US는 스펙트로그램 모양을 거의 유지하면서 전체 레벨을 낮춘다. 지운 에너지의 대부분은 에너지가 몰린 저주파(< 100 Hz)에서 나온다(LTAS의 주황 선).
+  - tonal 수는 R-US에서 유지되고, ShipsEar 모델에서는 2–3개 줄어든다.
+- 주의: 클립 하나씩이다. 전체 통계는 S16 숫자(UniqueShip test 전체)를 쓴다. 지운 에너지 %는 저주파 레벨에 지배된다.
 - 분류 효과: R3-US(UniqueShip fold1, seed 3) 결과를 발표 전에 채운다. 문구 3종(도움 / 해로움 / 불명확)을 준비해 둔다.
 
 ---
