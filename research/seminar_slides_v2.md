@@ -114,7 +114,7 @@
 - 증강 이득은 재현됐다. 기준선 절대값은 재현하지 못했다.
 - 체크포인트 선택을 last epoch로 바꾸면 Δ가 −8.40으로 뒤집힌다.
 - 누출 규모: test 녹음 153개(선박 103척). train+val segment의 64.6%(5,126/7,932)가 test 선박의 녹음이다.
-- 선박 분할 검증 [진행 중]: test 선박의 녹음을 뺀 조건과, 같은 양을 무작위로 뺀 대조 조건을 비교한다.
+- 선박 분할 검증은 하지 않았다(보류).
 - 그림: `S06_lmr_before_after.png`
 
 ### S7. LOFAR + Hough 증강 논문 재현과 분할별 비교 [검증]
@@ -356,7 +356,7 @@
 | EXP-001 | UniqueShip 기준선 재현(누출 분할 vs MMSI 분할) |
 | 분할 구성 | Ships-disjoint 5-fold 구성 |
 | EXP-002-PC | LMR 증강 논문 재현(녹음 단위 분할) |
-| EXP-E2-LMR-ships | LMR 증강의 선박 분할 검증 |
+| EXP-E2-LMR-ships | LMR 증강의 선박 분할 검증 (중단, 슬라이드에 쓰지 않음) |
 | EXP-LOFAR-001 | LOFAR + Hough 증강 논문 재현과 분할별 비교 |
 | E1-rep | 특징 도메인별 분류 성능 비교 |
 | E1-src, E1-src-CQT | broadband·tonal 성분별 분류 성능 비교 |
