@@ -107,3 +107,12 @@ WAV 파형으로 복원 가능한 수중 표적 선박 소음 생성 및 평가 
 - 진행 중: E1-AE 19/30 (GEN, fold4·5 남음). 정전 전 큐 STOP.
 - 끝난 핵심 결과: FocuS-MN ShipsEar 재현 통과(SDRi 8.68). 그 모델을 DeepShip 분류 앞단에 쓰면 해로움(−4.83 pp). R2c 퇴화 원인은 결합형 L2. UniqueShip 잡음 제거기(R-US) SDRi 8.46, tonal 보존.
 - 사용자 결정 대기: E1-AE 진행 방식(B 추천), R-US 다음 단계(A/B/C), E1-src 캐시 삭제, 세미나 슬라이드.
+
+
+## 2026-10-26 갱신 (실험 일시 중지, 세미나 준비)
+
+- 요약: `sessions/summaries/2026-10-26_denoising-close-seminar-prep.md`
+- 잡음 제거 분기 종료(D-2026-10-26-02). 분류·생성 입력 = 원본(16 kHz, 클립별 DC 제거).
+- 주요 결과: R3-DS-DC 해로움(−4.34, 5/5), R3-US 불명확(+0.09), DeepShip 클립 에너지의 98%가 DC.
+- 세션 상태: CLS·DEN·GEN 대기, GPU 비어 있음. E1-AE 22/30 일시정지(재개 방식은 사용자와 상의 예정).
+- 대기 중인 결정: E1-AE 재개 방식, 디스크 정리(/jhlee 97%).
